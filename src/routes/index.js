@@ -19,7 +19,11 @@ let sharedRouter = {
       path: '',
       component: () => import(/* webpackChunkName: "home" */ './home')
     },
-    // user
+    {
+      name: 'about-me',
+      path: 'about-me',
+      component: () => import('./about-me')
+    }
   ]
 }
 
