@@ -9,3 +9,18 @@ $index-z1: 1; //z-index值， 多用于页面底部
 $index-z2: 100;
 $index-z3: 101;
 $index-body: 99;
+
+.full-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.bg-home {
+  background: url('../imgs/background.jpg')
+}
+
+.bg-aboutme {
+  background: url('../imgs/about-me.jpg') no-repeat;
+
+}

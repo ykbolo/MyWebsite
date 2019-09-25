@@ -23,14 +23,5 @@
 </script>
 
 <style scoped>
-  .full-screen {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-
-  .bg-home {
-    background: url('../../background.jpg')
-  }
 
 </style>
