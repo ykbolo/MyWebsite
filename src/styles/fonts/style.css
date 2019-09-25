@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'zdao-m';
+  src:
+    url('fonts/zdao-m.ttf?thgo5d') format('truetype'),
+    url('fonts/zdao-m.woff?thgo5d') format('woff'),
+    url('fonts/zdao-m.svg?thgo5d#zdao-m') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'zdao-m' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-headbar_more:before {
+  content: "\e900";
+}
+.icon-headbar_more_backhome:before {
+  content: "\e901";
+}
+.icon-headbar_more_feedback:before {
+  content: "\e902";
+}
+.icon-headbar_more_play:before {
+  content: "\e903";
+}
+.icon-headbar_more_refresh:before {
+  content: "\e904";
+}
+.icon-headbar_more_wenhao:before {
+  content: "\e905";
+}
+.icon-headbar_back:before {
+  content: "\e906";
+}

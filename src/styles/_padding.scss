@@ -1,0 +1,175 @@
+/**
+ * Created by Wu Jian Ping on 2017/05/10
+ */
+
+// padding left
+
+.padding-l-0x {
+  padding-left: 0 !important;
+}
+
+.padding-l-0-3x {
+  padding-left: $grid-gutter-width / 6 !important;
+}
+
+.padding-l-0-6x {
+  padding-left: $grid-gutter-width / 3 !important;
+}
+
+.padding-l-1x {
+  padding-left: $grid-gutter-width / 2 !important;
+}
+
+.padding-l-1-3x {
+  padding-left: $grid-gutter-width / 1.5 !important;
+}
+
+// padding right
+
+.padding-r-0x {
+  padding-right: 0 !important;
+}
+
+.padding-r-0-3x {
+  padding-right: $grid-gutter-width / 6 !important;
+}
+
+.padding-r-0-6x {
+  padding-right: $grid-gutter-width / 3 !important;
+}
+
+.padding-r-1x {
+  padding-right: $grid-gutter-width / 2 !important;
+}
+
+.padding-r-1-3x {
+  padding-right: $grid-gutter-width / 1.5 !important;
+}
+
+// padding top
+
+.padding-t-0x {
+  padding-top: 0 !important;
+}
+
+.padding-t-0-3x {
+  padding-top: $grid-gutter-width / 6 !important;
+}
+
+.padding-t-0-6x {
+  padding-top: $grid-gutter-width / 3 !important;
+}
+
+.padding-t-1x {
+  padding-top: $grid-gutter-width / 2 !important;
+}
+
+.padding-t-2x {
+  padding-top: $grid-gutter-width !important;
+}
+
+.padding-t-1-3x {
+  padding-top: $grid-gutter-width / 1.5 !important;
+}
+
+// padding bottom
+
+.padding-b-0x {
+  padding-bottom: 0 !important;
+}
+
+.padding-b-0-3x {
+  padding-bottom: $grid-gutter-width / 6 !important;
+}
+
+.padding-b-0-6x {
+  padding-bottom: $grid-gutter-width / 3 !important;
+}
+
+.padding-b-1x {
+  padding-bottom: $grid-gutter-width / 2 !important;
+}
+
+.padding-b-2x {
+  padding-bottom: $grid-gutter-width !important;
+}
+
+.padding-b-1-3x {
+  padding-bottom: $grid-gutter-width / 1.5 !important;
+}
+
+// padding horizontal
+
+.padding-h-0x {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.padding-h-0-3x {
+  padding-left: $grid-gutter-width / 6 !important;
+  padding-right: $grid-gutter-width / 6 !important;
+}
+
+.padding-h-0-6x {
+  padding-left: $grid-gutter-width / 3 !important;
+  padding-right: $grid-gutter-width / 3 !important;
+}
+
+.padding-h-1x {
+  padding-left: $grid-gutter-width / 2 !important;
+  padding-right: $grid-gutter-width / 2 !important;
+}
+
+.padding-h-1-3x {
+  padding-left: $grid-gutter-width / 1.5 !important;
+  padding-right: $grid-gutter-width / 1.5 !important;
+}
+
+// padding vertical
+
+.padding-v-0x {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.padding-v-0-3x {
+  padding-top: $grid-gutter-width / 6 !important;
+  padding-bottom: $grid-gutter-width / 6 !important;
+}
+
+.padding-v-0-6x {
+  padding-top: $grid-gutter-width / 3 !important;
+  padding-bottom: $grid-gutter-width / 3 !important;
+}
+
+.padding-v-1x {
+  padding-top: $grid-gutter-width / 2 !important;
+  padding-bottom: $grid-gutter-width / 2 !important;
+}
+
+.padding-v-1-3x {
+  padding-top: $grid-gutter-width / 1.5 !important;
+  padding-bottom: $grid-gutter-width / 1.5 !important;
+}
+
+// padding all
+
+.padding-0x {
+  padding: 0 !important;
+}
+
+.padding-0-3x {
+  padding: $grid-gutter-width / 6 !important;
+}
+
+.padding-0-6x {
+  padding: $grid-gutter-width / 3 !important;
+}
+
+.padding-1x {
+  padding: $grid-gutter-width / 2 !important;
+}
+
+.padding-1-3x {
+  padding: $grid-gutter-width / 1.5 !important;
+}

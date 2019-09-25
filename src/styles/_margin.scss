@@ -1,0 +1,171 @@
+/**
+ * Created by Wu Jian Ping on 2017/05/10
+ */
+
+.margin-l-0x {
+  margin-left: 0 !important;
+}
+
+// 5px
+.margin-l-0-3x {
+  margin-left: $grid-gutter-width/6 !important;
+}
+
+// 10px
+.margin-l-0-6x {
+  margin-left: $grid-gutter-width/3 !important;
+}
+
+// 15px
+.margin-l-1x {
+  margin-left: $grid-gutter-width/2 !important;
+}
+
+// 20px
+.margin-l-1-3x {
+  margin-left: $grid-gutter-width/1.5 !important;
+}
+
+// margin right
+
+.margin-r-0x {
+  margin-right: 0 !important;
+}
+
+.margin-r-0-3x {
+  margin-right: $grid-gutter-width/6 !important;
+}
+
+.margin-r-0-6x {
+  margin-right: $grid-gutter-width/3 !important;
+}
+
+.margin-r-1x {
+  margin-right: $grid-gutter-width/2 !important;
+}
+
+.margin-r-1-3x {
+  margin-right: $grid-gutter-width/1.5 !important;
+}
+
+// margin top
+
+.margin-t-0x {
+  margin-top: 0 !important;
+}
+
+.margin-t-0-3x {
+  margin-top: $grid-gutter-width/6 !important;
+}
+
+.margin-t-0-6x {
+  margin-top: $grid-gutter-width/3 !important;
+}
+
+.margin-t-1x {
+  margin-top: $grid-gutter-width/2 !important;
+}
+
+.margin-t-1-3x {
+  margin-top: $grid-gutter-width/1.5 !important;
+}
+
+// margin bottom
+
+.margin-b-0x {
+  margin-bottom: 0 !important;
+}
+
+.margin-b-0-3x {
+  margin-bottom: $grid-gutter-width/6 !important;
+}
+
+.margin-b-0-6x {
+  margin-bottom: $grid-gutter-width/3 !important;
+}
+
+.margin-b-1x {
+  margin-bottom: $grid-gutter-width/2 !important;
+}
+
+.margin-b-1-3x {
+  margin-bottom: $grid-gutter-width/1.5 !important;
+}
+
+// margin horizontal
+
+.margin-h-0x {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.margin-h-0-3x {
+  margin-left: $grid-gutter-width/6 !important;
+  margin-right: $grid-gutter-width/6 !important;
+}
+
+.margin-h-0-6x {
+  margin-left: $grid-gutter-width/3 !important;
+  margin-right: $grid-gutter-width/3 !important;
+}
+
+.margin-h-1x {
+  margin-left: $grid-gutter-width/2 !important;
+  margin-right: $grid-gutter-width/2 !important;
+}
+
+.margin-h-1-3x {
+  margin-left: $grid-gutter-width/1.5 !important;
+  margin-right: $grid-gutter-width/1.5 !important;
+}
+
+// margin vertical
+
+.margin-v-0x {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.margin-v-0-3x {
+  margin-top: $grid-gutter-width/6 !important;
+  margin-bottom: $grid-gutter-width/6 !important;
+}
+
+.margin-v-0-6x {
+  margin-top: $grid-gutter-width/3 !important;
+  margin-bottom: $grid-gutter-width/3 !important;
+}
+
+.margin-v-1x {
+  margin-top: $grid-gutter-width/2 !important;
+  margin-bottom: $grid-gutter-width/2 !important;
+}
+
+
+.margin-v-1-3x {
+  margin-top: $grid-gutter-width/1.5 !important;
+  margin-bottom: $grid-gutter-width/1.5 !important;
+}
+
+// margin all
+
+.margin-0x {
+  margin: 0 !important;
+}
+
+.margin-0-3x {
+  margin: $grid-gutter-width/6 !important;
+}
+
+.margin-0-6x {
+  margin: $grid-gutter-width/3 !important;
+}
+
+.margin-1x {
+  margin: $grid-gutter-width/2 !important;
+}
+
+.margin-1-3x {
+  margin: $grid-gutter-width/1.5 !important;
+}
+

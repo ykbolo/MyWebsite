@@ -1,0 +1,122 @@
+// Color system
+// 去掉 default 的表示已经占用了
+$white: #fff;
+$gray-100: #FAFAFA;
+$gray-200: #F5F5F5;
+$gray-300: #E9E9E9;
+$gray-400: #CCCCCC;
+$gray-500: #999999;
+$gray-600: #666666;
+$gray-700: #333333;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000;
+
+$blue: #576B95;
+$indigo: #343B5B;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #FF4B31;
+$orange: #F49300;
+$yellow: #F5BC00;
+$green: #27BBA5;
+$teal: #61CFE4;
+$cyan: #4D87EE;
+
+$colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+        (
+            "blue": $blue,
+            "indigo": $indigo,
+            "purple": $purple,
+            "pink": $pink,
+            "red": $red,
+            "orange": $orange,
+            "yellow": $yellow,
+            "green": $green,
+            "teal": $teal,
+            "cyan": $cyan,
+            "white": $white,
+            "gray": $gray-600,
+            "gray-dark": $gray-800
+        ),
+        $colors
+);
+
+$primary: $red;
+$secondary: $blue;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-700;
+
+$theme-colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+        (
+            "primary": $primary,
+            "secondary": $secondary,
+            "success": $success,
+            "info": $info,
+            "warning": $warning,
+            "danger": $danger,
+            "light": $light,
+            "dark": $dark
+        ),
+        $theme-colors
+);
+
+$link-color: theme-color("secondary");
+
+$line-height-base: 1.375;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-padding-y: 10px;
+$input-btn-padding-x: 20px;
+$input-btn-font-size: $font-size-base;
+$input-btn-line-height: $line-height-base;
+
+$input-btn-padding-y-sm: 4px;
+$input-btn-padding-x-sm: 8px;
+$input-btn-font-size-sm: $font-size-sm;
+$input-btn-line-height-sm: 18px;
+
+$input-btn-padding-y-lg: 12px;
+$input-btn-padding-x-lg: 24px;
+$input-btn-font-size-lg: $font-size-base;
+$input-btn-line-height-lg: $line-height-base;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+$btn-padding-y: $input-btn-padding-y;
+$btn-padding-x: $input-btn-padding-x;
+$btn-font-size: $input-btn-font-size;
+$btn-line-height: $input-btn-line-height;
+
+$btn-padding-y-sm: $input-btn-padding-y-sm;
+$btn-padding-x-sm: $input-btn-padding-x-sm;
+$btn-font-size-sm: $input-btn-font-size-sm;
+$btn-line-height-sm: $input-btn-line-height-sm;
+
+$btn-padding-y-lg: $input-btn-padding-y-lg;
+$btn-padding-x-lg: $input-btn-padding-x-lg;
+$btn-font-size-lg: $input-btn-font-size-lg;
+$btn-line-height-lg: $input-btn-line-height-lg;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius: 0;
+$btn-border-radius-lg: 0;
+$btn-border-radius-sm: 0;
+
+$btn-box-shadow: none;
+$btn-focus-width: 0;
+$btn-active-box-shadow: none;
+$btn-focus-box-shadow: none;

@@ -1,0 +1,45 @@
+/**
+ * Created by Wu Jian Ping on 2017/05/10.
+ */
+html {
+  position: relative;
+  min-height: 100%;
+  user-select: none;
+  font-size: 14px;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: $gray-100;
+  user-select: none;
+  color: $gray-800;
+  border: 0;
+  font-family: "PingFangSC-Regular", "PingFangSC", "helvetica neue", tahoma, arial, "microsoft yahei ui", "microsoft yahei", simsun, sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+  // transition: all 0.3s;
+
+  &.disabled {
+    // color: $btn-link-disabled-color;
+  }
+}
+
+// 文本无法选中
+
+.user-select-none {
+  user-select: none;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.btn-radius {
+  border-radius: 999px !important;
+}

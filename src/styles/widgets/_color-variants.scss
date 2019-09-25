@@ -1,0 +1,75 @@
+@import '../mixins/button';
+
+$color-types: join((primary: $primary, success: $success, info: $info, warning: $warning, danger: $danger), $colors);
+
+@each $name, $color in $color-types {
+  /* button */
+  .btn.btn-#{$name} {
+    @include btn-solid-variant($color, $color)
+  }
+
+  .btn.btn-outline-#{$name} {
+    @include btn-outline-variant($color)
+  }
+
+  .font-#{$name} {
+    color: $color !important;
+  }
+
+  /* label */
+  .label-#{$name} {
+    // @extend .label-default;
+    font-weight: normal;
+    display: inline-block;
+    background-color: transparent;
+    color: $color;
+    border: 1px solid $color;
+  }
+}
+
+// 下面是一些需要特殊处理的颜色
+/* font */
+.font-white {
+  color: #fff !important;
+}
+
+/* Button */
+.btn.default {
+  @include button-variant($red, $red, $red);
+}
+
+.btn.btn-outline.default {
+  border-color: $red;
+  color: $red;
+  background: $white;
+
+  &:active {
+    border-color: $red;
+    color: $red;
+    background-color: $white;
+
+    &:focus {
+      border-color: $red;
+      color: $red;
+      background-color: $white;
+    }
+
+    &:hover {
+      border-color: $red;
+      color: $red;
+      background-color: $white;
+    }
+  }
+
+  &:focus {
+    border-color: $red;
+    color: $red;
+    background-color: $white;
+  }
+
+  &:hover {
+    border-color: $red;
+    color: $red;
+    background-color: $white;
+  }
+}

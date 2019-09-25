@@ -1,0 +1,12 @@
+/* button start */
+
+// sass-lint:disable force-pseudo-nesting
+@mixin btn-solid-variant($color, $background) {
+  @include button-variant($color, $background, $background);
+}
+@mixin btn-outline-variant($color) {
+  @include button-outline-variant($color, $color, #ffffff, $color);
+}
+// sass-lint:enable force-pseudo-nesting
+
+/* button end */
