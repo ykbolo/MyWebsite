@@ -1,0 +1,76 @@
+.home {
+  overflow: hidden;
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  min-width: 320px;
+
+  .home-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .logo {
+      overflow: hidden;
+      position: relative;
+      width: 8em;
+      height: 8em;
+      border: 1px solid var(--Color_MainBlue);
+      border-radius: 50%;
+
+      img {
+        position: relative;
+        width: 200%;
+        height: 100%;
+      }
+
+      img:hover {
+        position: relative;
+        width: 200%;
+        right: 100%;
+        height: 100%;
+      }
+    }
+
+    .seperator_betweenNavAndLink {
+      width: 90%;
+    }
+
+    .title {
+      margin-left: 5em;
+      color: #5978f2;
+
+      p {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: rgb(129, 118, 189);
+      }
+    }
+  }
+}
+
+#nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 80%;
+  padding: 1em 0;
+  font-size: 1.6em;
+  flex-wrap: nowrap;
+
+  .circle {
+    :hover {
+      background: radial-gradient(rgba(250, 250, 0, 0.5), rgba(200, 200, 0, 0.4), rgba(100, 100, 0, 0.1));
+      /* 标准的语法 */
+    }
+
+    a {
+      color: black;
+    }
+  }
+}
