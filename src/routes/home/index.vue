@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-home full-screen container text-center home">
+  <div class="bg-home full-screen text-center home">
     <div class="home-content">
       <div class="logo">
         <img src="../../imgs/york.png">
       </div>
-      <div class="title"><a href="page/Introduction.html" target="_blank" title="关于我"><h1>YorK的神奇之旅</h1></a></div>
+      <div class="title"><a href="page/Introduction.html" target="_blank" title="关于我"><h1>YorK的世界</h1></a></div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
     </div>
     
