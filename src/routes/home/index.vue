@@ -1,5 +1,6 @@
 <template>
   <div class="bg-home full-screen text-center home">
+    <app-clock></app-clock>
     <div class="home-content">
       <div class="logo">
         <img src="../../imgs/york.png">
