@@ -1,5 +1,3 @@
-import appClock from '../code/app-clock'
-
 export default {
   data() {
     return {
@@ -7,7 +5,6 @@ export default {
     }
   },
   components: {
-    [appClock.name]: appClock
   },
   methods: {
     changeHover: function () {

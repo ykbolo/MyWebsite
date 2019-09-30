@@ -1,10 +1,10 @@
 <template>
   <div class="bg-home full-screen text-center home">
-    <app-clock></app-clock>
     <div class="home-content">
       <div class="logo">
         <img src="../../imgs/york.png">
       </div>
+      <br class="br">
       <div class="title">
         <h1>YorK的世界</h1>
         <div @click="changeHover">
