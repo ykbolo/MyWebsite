@@ -5,9 +5,6 @@
     </div>
   </div>
 </template>
-<script>
-  export default {
-    name: 'about-me'
-  }
+<script src='./component.js'>
 
 </script>

@@ -46,11 +46,9 @@
             <span>文章</span>
           </a>
         </div>
-
       </div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
     </div>
-
   </div>
 </template>
 
