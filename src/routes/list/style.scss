@@ -71,6 +71,12 @@
         font-weight: bold;
         color: purple;
         font-size: 26px;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+
         // border-bottom: 1px solid purple;
       }
 

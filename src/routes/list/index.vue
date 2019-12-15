@@ -17,35 +17,26 @@
     <div class="col-8 right-container">
       <div class="nav row margin-h-0x">
         <div class="col-6 row ">
-          <div class="col-4 nav-link active">
-            代码
-          </div>
-          <div class="col-4 nav-link">
-            游戏
-          </div>
-          <div class="col-4 nav-link">
-            文章
-          </div>
+          <router-link class="col-4 nav-link" :to="{name:'code'}">
+            <div>
+
+              代码
+            </div>
+          </router-link>
+          <router-link class="col-4 nav-link" :to="{name:'game'}">
+            <div>
+              游戏
+            </div>
+          </router-link>
+          <router-link class="col-4 nav-link" :to="{name:'article'}">
+            <div>
+
+              文章
+            </div>
+          </router-link>
         </div>
       </div>
-      <div class="every margin-t-1x">
-        <div class="every-head">
-          <span>第一：开放源码</span>
-          <br></div>
-        <div class="every-body">vue项目的架构思路以及引入包</div>
-      </div>
-      <div class="every">
-        <div class="every-head">
-          <span>第二：d3深入浅出</span>
-          <br></div>
-        <div class="every-body">基于d3的可视化研究</div>
-      </div>
-      <div class="every">
-        <div class="every-head">
-          <span>第三：git的使用</span>
-          <br></div>
-        <div class="every-body">小白也能会的git命令</div>
-      </div>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -53,6 +44,6 @@
 
 </script>
 
-<style lang="scss" src="./style.scss" scoped>
+<style lang="scss" src="./style.scss">
 
 </style>
