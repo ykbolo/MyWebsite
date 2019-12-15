@@ -66,6 +66,10 @@
   margin-top: $grid-gutter-width/2 !important;
 }
 
+.margin-t-2x {
+  margin-top: $grid-gutter-width !important;
+}
+
 .margin-t-1-3x {
   margin-top: $grid-gutter-width/1.5 !important;
 }
@@ -168,4 +172,3 @@
 .margin-1-3x {
   margin: $grid-gutter-width/1.5 !important;
 }
-

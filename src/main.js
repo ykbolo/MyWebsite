@@ -7,7 +7,7 @@ import router from './router'
 
 import 'bootstrap'
 import './styles/global.scss'
-
+import './styles/common.scss'
 // // global components
 // import './components'
 

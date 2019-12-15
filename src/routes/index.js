@@ -23,6 +23,17 @@ let sharedRouter = {
       name: 'about-me',
       path: 'about-me',
       component: () => import('./about-me')
+    },
+    {
+      name: 'list',
+      path: 'list',
+      component: () => import('./list'),
+      children: [{
+        name: 'article',
+        path: 'article',
+        component: () => import('./list/article')
+      }
+      ]
     }
   ]
 }
