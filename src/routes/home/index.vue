@@ -14,22 +14,22 @@
       </div>
       <div id="nav">
         <div class="circle">
-          <a href="page/Directory.html?content=game&amp;title=游戏" @click="showgame()">
+          <router-link :to="{name:'game'}" @click="showgame()">
             <img src="./images/youxi.svg">
             <span>游戏</span>
-          </a>
+          </router-link>
         </div>
         <div class="circle">
-          <a href="page/Directory.html?content=programming&amp;title=代码" @click="showcode()">
+          <router-link :to="{name:'code'}" @click="showcode()">
             <img src="./images/daima.svg">
             <span>代码</span>
-          </a>
+            </a>
         </div>
         <div class="circle">
-          <a href="page/Directory.html?content=drawing&amp;title=绘画" @click="showarticle()">
+          <router-link :to="{name:'article'}" @click="showarticle()">
             <img src="./images/wenzhang.svg">
             <span>文章</span>
-          </a>
+            </a>
         </div>
       </div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
