@@ -1,21 +1,31 @@
 // import WebSocket from "vue-websocket";
 import $ from 'jquery'
-import { thresholdScott } from 'd3'
+import { schemeGnBu } from 'd3'
 
 export default {
   name: 'about-me',
   data() {
     return {
-      username: 'yk',
+      showChoose: true,
+      username: '',
       table: [],
       current_position: {
         x: 0,
         y: 0
-      }
+      },
+      distance: '*'
     }
   },
 
   methods: {
+    setName(type) {
+      if (type === 1) {
+        this.username = "hunter"
+      } else {
+        this.username = "cat"
+      }
+      this.showChoose = false
+    },
     init: function () {
       if (typeof (WebSocket) === "undefined") {
         alert("您的浏览器不支持socket")
@@ -36,37 +46,46 @@ export default {
         for (var j = 0; j < 15; j++) {
           this.table[i].push({
             isopen: 0,
-            isuser: 0,
+            ishunter: 0,
             isblock: 0,
-            isgift: 0
+            isgift: 0,
           })
         }
       }
       this.table[this.current_position.x][this.current_position.y].isopen = 1
-      this.table[this.current_position.x][this.current_position.y].isuser = 1
+      this.table[this.current_position.x][this.current_position.y].ishunter = 1
       console.log(this.table)
     },
     move(direction) {
-      let table_isuser_pos = this.table[this.current_position.x][this.current_position.y]
+      let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
       if (direction === "left" && this.current_position.y > 0) {
-        table_isuser_pos.isuser = 0
+        table_ishunter_pos.ishunter = 0
         this.current_position.y = this.current_position.y - 1
       } else if (direction === "right" && this.current_position.y < 14) {
-        table_isuser_pos.isuser = 0
+        table_ishunter_pos.ishunter = 0
         this.current_position.y = this.current_position.y + 1
       } else if (direction === "up" && this.current_position.x > 0) {
-        table_isuser_pos.isuser = 0
+        table_ishunter_pos.ishunter = 0
         this.current_position.x = this.current_position.x - 1
       } else if (direction === "down" && this.current_position.x < 14) {
-        table_isuser_pos.isuser = 0
+        table_ishunter_pos.ishunter = 0
         this.current_position.x = this.current_position.x + 1
       } else {
-
         return
       }
       console.log(this.current_position)
       this.table[this.current_position.x][this.current_position.y].isopen = 1
-      this.table[this.current_position.x][this.current_position.y].isuser = 1
+      this.table[this.current_position.x][this.current_position.y].ishunter = 1
+      var msg = {
+        current_position: this.current_position,
+        username: this.username,
+        type: 'position'
+      }
+      this.socket.send(JSON.stringify(msg))
+    },
+    createBoom: function () {
+      this.table[2][3].isblock = 1
+      this.table[2][5].isblock = 1
     },
     open: function () {
       console.log("socket连接成功")
@@ -75,14 +94,21 @@ export default {
       console.log("连接错误")
     },
     getMessage: function (msg) {
-      console.log(msg.data)
-    },
-    send: function () {
-      var msg = {
-        type: "msg",
-        username: "yk",
-        content: "msg2" //发送消息
+      var data = JSON.parse(msg.data)
+      // console.log(data)
+      if (data.type === 'distance') {
+        this.distance = data.distance
+        // console.log(this.distance)
+      } else if (data.type === 'cat_pos') {
+        console.log(data.cat_pos)
+        console.log('---')
+      } else if (data.type === 'hunter_pos') {
+        console.log(data.cat_pos)
+        console.log('---')
       }
+
+    },
+    send: function (msg) {
       this.socket.send(JSON.stringify(msg))
     },
     close: function () {
@@ -93,5 +119,6 @@ export default {
   mounted() {
     this.init()
     this.initTable()
+    this.createBoom()
   }
 }

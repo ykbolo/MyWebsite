@@ -1,12 +1,19 @@
 <template>
+
   <div class="game">
-    <table>
-      <tbody>
-        <tr v-for="(item,index) in table">
-          <td v-for="(value,idx) in item"><span v-bind:class="{ isopen: value.isopen===1,isuser: value.isuser===1 }"></span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="showChoose">
+      <div @click="setName(1)"><button>追捕者</button></div>
+      <div @click="setName(2)"><button>被追捕者</button></div>
+    </div>
+    <div v-else>
+      <table>
+        <tbody>
+          <tr v-for="(item,index) in table">
+            <td v-for="(value,idx) in item"><span v-bind:class="{ isopen: value.isopen===1,ishunter: value.ishunter===1,isboom:value.isblock===1 }"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="controller">
       <div style="display:inline-block">
         <div class="row">
@@ -19,6 +26,9 @@
         </div>
       </div>
     </div>
+    <div class="tip" v-if="username==='hunter'">距离猎物还有{{distance}}步</div>
+    <div class="tip" v-else>距离被抓到还有{{distance}}步</div>
+    <p></p>
     <span>游戏规则</span>
     <div>分为追捕者和被追捕者</div>
     <div>被追捕者负责放置炸弹，最多不超过10个,可以在没有被打开的盒子中自由移动，如果追捕者碰到炸弹将获胜</div>
