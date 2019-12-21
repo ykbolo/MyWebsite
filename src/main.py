@@ -68,7 +68,6 @@ class Application(tornado.web.Application):
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = Application([
-
         (r"/game", ChatroomHandler)
     ],
     )

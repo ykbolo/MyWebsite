@@ -1,0 +1,56 @@
+.margin-l-5px {
+  margin-left: 5px;
+}
+
+.game {
+  table {
+    width: 100%;
+    height: auto;
+
+    td {
+      width: 10px;
+      height: 25px;
+      border: 1px solid #eeeeee;
+      position: relative;
+      span {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: #333333;
+      }
+
+      .isopen {
+        background: #ffffff;
+      }
+      .isuser {
+        background: yellow !important;
+      }
+    }
+  }
+
+  .controller {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+
+    .shang {
+      position: relative;
+      left: 65px;
+      bottom: 5px;
+    }
+
+    span {
+      display: inline-block;
+      font-size: 1.2em;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #333333;
+    }
+
+    .col-12 {
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
