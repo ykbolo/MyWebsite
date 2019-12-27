@@ -12,6 +12,7 @@
       height: 25px;
       border: 1px solid #eeeeee;
       position: relative;
+
       span {
         display: inline-block;
         width: 100%;
@@ -22,11 +23,21 @@
       .isopen {
         background: #ffffff;
       }
+
       .ishunter {
-        background: yellow !important;
+        background: url(./image/hunter.png) no-repeat center 50% !important;
+
+        background-size: contain !important;
       }
+
       .isboom {
-        background: red !important;
+        background: url(./image/boom.png) no-repeat center 50% !important;
+        background-size: contain !important;
+      }
+
+      .iscat {
+        background: url(./image/cat.png) no-repeat center 50% !important;
+        background-size: contain !important;
       }
     }
   }

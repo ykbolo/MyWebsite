@@ -1,30 +1,32 @@
-import logging
+# import logging
 import time
 import tornado.escape
 import tornado.ioloop
 import tornado.web
-
 import uuid
 import json
-from tornado.concurrent import Future
+
 from tornado import gen
 from tornado.options import define, options, parse_command_line
 from tornado.websocket import WebSocketHandler
-
+'''
+  tornado.web 包括Web框架大部分主要功能，包括RequestHandler和Application类。
+  tornado.httpserver一个无阻塞HTTP服务器的实现
+  tornado.escape HTML、JSON、URLs等编码解码和字符串操作
+  tornado.ioloop 核心IO循环
+  tornado.websocket实现和浏览器的双向通信
+  tornado.options解析终端参数
+'''
 define("port", default=8880, help="run on the given port", type=int)
 define("debug", default=False, help="run in debug mode")
-pos_cat = {'x': 5, 'y': 5}
-pos_hunter = {'x': 0, 'y': 0}
-
 
 class ChatroomHandler(WebSocketHandler):
     online_users = set()
-
+    pos_cat={'x':1,'y':5}
+    pos_hunter={'x':1,'y':5}
     def cal_distance(self):
-        print(pos_cat)
-        print(pos_hunter)
-        row_dis = abs(pos_cat['x']-pos_hunter['x'])
-        col_dis = abs(pos_cat['y']-pos_hunter['y'])
+        row_dis = abs(self.pos_cat['x']-self.pos_hunter['x'])
+        col_dis = abs(self.pos_cat['y']-self.pos_hunter['y'])
         distance = row_dis+col_dis
         print(distance)
         return distance
@@ -34,46 +36,44 @@ class ChatroomHandler(WebSocketHandler):
         # 重写open方法，当有新的聊天用户进入的时候自动触发该函数
 
     def open(self):
-        # 当有新的用户上线，将该用户加入集合中
-
+        # 每当有客户端连接，则增加一个对象==当有新的用户上线，将该用户加入集合中
         self.online_users.add(self)
-        # 将新用户加入的信息发送给所有的在线用户
 
-    # 重写on_message方法，当聊天消息有更新时自动触发的函数
+    # on_message方法，当客户端有消息传来后，则
     def on_message(self, message):
-        global pos_hunter
-        global pos_cat
         message = json.loads(message)
         if message['type'] == 'position':
             if message['username'] == 'hunter':
                 print('hunter')
-                pos_hunter = message['current_position']
+                self.pos_hunter = message['current_position']
             elif message['username'] == 'cat':
                 print('cat')
-                pos_cat = message['current_position']
+                self.pos_cat = message['current_position']
             else:
                 return
             distance = self.cal_distance()
+            print('distance',distance)
             for user in self.online_users:
                 user.write_message(json.dumps({
                     'type': 'distance',
                     'distance': distance
-
                 }))
                 user.write_message(json.dumps({
                     'type': 'cat_pos',
-                    'cat_pos': pos_cat
+                    'cat_pos': self.pos_cat
                 }))
                 user.write_message(json.dumps({
                     'type': 'cat_hunter',
-                    'hunter_pos': pos_hunter
+                    'hunter_pos': self.pos_hunter
                 }))
-            print(pos_hunter)
-            print(pos_cat)
+            # print(pos_hunter)
+            # print(pos_cat)
 
     def on_close(self):
         print('close')
-        # post方法
+        # 当有用户退出时，将它移除克！
+        self.online_users.remove(self)
+
 
     def post(self):
         self.render("logout.html")

@@ -2,14 +2,14 @@
 
   <div class="game">
     <div v-if="showChoose">
-      <div @click="setName(1)"><button>追捕者</button></div>
-      <div @click="setName(2)"><button>被追捕者</button></div>
+      <div @click="setName(1)"><button>猎人</button></div>
+      <div @click="setName(2)"><button>小动物</button></div>
     </div>
     <div v-else>
       <table>
         <tbody>
           <tr v-for="(item,index) in table">
-            <td v-for="(value,idx) in item"><span v-bind:class="{ isopen: value.isopen===1,ishunter: value.ishunter===1,isboom:value.isblock===1 }"></span></td>
+            <td v-for="(value,idx) in item"><span v-bind:class="{ isopen: value.isopen===1,iscat:value.iscat,ishunter: value.ishunter===1,isboom:value.isoom===1 }"></span></td>
           </tr>
         </tbody>
       </table>

@@ -1,12 +1,15 @@
+import e from "cors"
+
 // import WebSocket from "vue-websocket";
-import $ from 'jquery'
-import { schemeGnBu } from 'd3'
+// import $ from 'jquery'
+// import { schemeGnBu } from 'd3'
 
 export default {
   name: 'about-me',
   data() {
     return {
       showChoose: true,
+      npccolor: 'white',
       username: '',
       table: [],
       current_position: {
@@ -25,6 +28,8 @@ export default {
         this.username = "cat"
       }
       this.showChoose = false
+      this.initTable()
+      this.createBoom()
     },
     init: function () {
       if (typeof (WebSocket) === "undefined") {
@@ -47,27 +52,41 @@ export default {
           this.table[i].push({
             isopen: 0,
             ishunter: 0,
-            isblock: 0,
+            isboom: 0,
             isgift: 0,
+            iscat: 0
           })
         }
       }
       this.table[this.current_position.x][this.current_position.y].isopen = 1
-      this.table[this.current_position.x][this.current_position.y].ishunter = 1
+      console.log(this.username)
+      if (this.username == "hunter") {
+        this.table[this.current_position.x][this.current_position.y].ishunter = 1
+      } else if (this.username == "cat") {
+        console.log('cat')
+        this.table[this.current_position.x][this.current_position.y].iscat = 1
+      } else {
+        console.log('观察')
+      }
+
       console.log(this.table)
     },
     move(direction) {
       let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
       if (direction === "left" && this.current_position.y > 0) {
+        table_ishunter_pos.iscat = 0
         table_ishunter_pos.ishunter = 0
         this.current_position.y = this.current_position.y - 1
       } else if (direction === "right" && this.current_position.y < 14) {
+        table_ishunter_pos.iscat = 0
         table_ishunter_pos.ishunter = 0
         this.current_position.y = this.current_position.y + 1
       } else if (direction === "up" && this.current_position.x > 0) {
+        table_ishunter_pos.iscat = 0
         table_ishunter_pos.ishunter = 0
         this.current_position.x = this.current_position.x - 1
       } else if (direction === "down" && this.current_position.x < 14) {
+        table_ishunter_pos.iscat = 0
         table_ishunter_pos.ishunter = 0
         this.current_position.x = this.current_position.x + 1
       } else {
@@ -75,7 +94,14 @@ export default {
       }
       console.log(this.current_position)
       this.table[this.current_position.x][this.current_position.y].isopen = 1
-      this.table[this.current_position.x][this.current_position.y].ishunter = 1
+      if (this.username === "hunter") {
+        this.table[this.current_position.x][this.current_position.y].ishunter = 1
+      } else if (this.username === "cat") {
+        this.table[this.current_position.x][this.current_position.y].iscat = 1
+      } else {
+        console.log('观察者')
+      }
+
       var msg = {
         current_position: this.current_position,
         username: this.username,
@@ -84,8 +110,8 @@ export default {
       this.socket.send(JSON.stringify(msg))
     },
     createBoom: function () {
-      this.table[2][3].isblock = 1
-      this.table[2][5].isblock = 1
+      this.table[2][3].isboom = 1
+      this.table[2][5].isboom = 1
     },
     open: function () {
       console.log("socket连接成功")
@@ -118,7 +144,7 @@ export default {
   },
   mounted() {
     this.init()
-    this.initTable()
-    this.createBoom()
+
+
   }
 }
