@@ -18,6 +18,7 @@ export default {
     showcontent(id) {
       this.showlist = false
       this.id = id
+      window.history.pushState({ status: 0 }, '', `?id=${this.id}`)
     }
   }
 }
