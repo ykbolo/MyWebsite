@@ -3,6 +3,20 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+var http = require('http');
+var marked = require('marked');
+
+app.use(express.static('src'));  //加载静态文件
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.get('/getMdFile', urlencodedParser, function (req, res) {
+
+  var data = fs.readFileSync('src/test.md', 'utf-8');    //读取本地的md文件
+  res.end(JSON.stringify({
+    body: marked(data)
+  }));
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
