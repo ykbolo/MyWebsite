@@ -2,7 +2,93 @@
   margin-left: 5px;
 }
 
+em {
+  color: #e40914;
+  font-weight: 600;
+  font-style: normal;
+}
+
 .game {
+  text-align: center;
+
+  .biaozhu {
+    .biaozhu-title {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #eeeeee;
+
+      display: inline-block;
+
+      &.issafe {
+        background: #0d6102;
+      }
+
+      &.isboom {
+        background: url(./image/boom.png) no-repeat center 50% !important;
+        background-size: 25px 25px !important;
+      }
+
+      &.ishunter {
+        background: url(./image/hunter.png) no-repeat center 50% !important;
+        background-size: 25px 25px !important;
+      }
+
+      &.iscat {
+        background: url(./image/cat.png) no-repeat center 50% !important;
+        background-size: 25px 25px !important;
+      }
+
+      &.isopen {
+        background: #ffffff;
+
+      }
+
+      &.isunknown {
+        background: #333333;
+      }
+    }
+
+    .biaozhu-desc {
+      font-size: 14px;
+      color: rgb(126, 86, 13);
+      position: relative;
+      top: -5px;
+
+    }
+  }
+
+  .tip {
+    text-align: center;
+
+    .tip-title {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #eeeeee;
+
+      display: inline-block;
+
+      &.isboom {
+        background: url(./image/boom.png) no-repeat center 50% !important;
+        background-size: 25px 25px !important;
+      }
+    }
+
+    .tip-desc {
+      font-size: 14px;
+      color: rgb(126, 86, 13);
+      position: relative;
+      top: -5px;
+    }
+  }
+
+  .rule-title {
+    border: 2px solid rgb(17, 160, 204);
+    padding: 3px;
+    color: #333333;
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
   table {
     width: 100%;
     height: auto;
@@ -21,7 +107,7 @@
       }
 
       .isopen {
-        background: #ffffff;
+        background: #ffffff !important;
       }
 
       .ishunter {
@@ -38,6 +124,10 @@
       .iscat {
         background: url(./image/cat.png) no-repeat center 50% !important;
         background-size: contain !important;
+      }
+
+      .issafe {
+        background: #0d6102;
       }
     }
   }

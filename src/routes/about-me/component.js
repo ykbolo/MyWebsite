@@ -11,12 +11,16 @@ export default {
       showChoose: true,
       npccolor: 'white',
       username: '',
+      rowValue: 15,
+      colValue: 15,
       table: [],
       current_position: {
         x: 0,
         y: 0
       },
-      distance: '*'
+      distance: '*',
+      boomCount: 0,
+      boomList: []
     }
   },
 
@@ -29,7 +33,10 @@ export default {
       }
       this.showChoose = false
       this.initTable()
-      this.createBoom()
+      this.createBoom(this.rowValue, this.colValue, 20)
+      this.insertBoom()
+      this.InsertCount(this.rowValue, this.colValue)
+      console.log(this.table)
     },
     init: function () {
       if (typeof (WebSocket) === "undefined") {
@@ -50,26 +57,28 @@ export default {
         this.table.push([])
         for (var j = 0; j < 15; j++) {
           this.table[i].push({
-            isopen: 0,
+            isopen: false,
             ishunter: 0,
             isboom: 0,
             isgift: 0,
-            iscat: 0
+            iscat: 0,
+            value: 0,
+            issafe: false
           })
         }
       }
       this.table[this.current_position.x][this.current_position.y].isopen = 1
-      console.log(this.username)
+      //console.log(this.username)
       if (this.username == "hunter") {
         this.table[this.current_position.x][this.current_position.y].ishunter = 1
       } else if (this.username == "cat") {
-        console.log('cat')
+        //console.log('cat')
         this.table[this.current_position.x][this.current_position.y].iscat = 1
       } else {
-        console.log('观察')
+        //console.log('观察')
       }
 
-      console.log(this.table)
+      //console.log(this.table)
     },
     move(direction) {
       let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
@@ -92,14 +101,15 @@ export default {
       } else {
         return
       }
-      console.log(this.current_position)
-      this.table[this.current_position.x][this.current_position.y].isopen = 1
+      //console.log(this.current_position)
+      this.Open(this.current_position.x, this.current_position.y, this.rowValue, this.colValue)
+      this.table[this.current_position.x][this.current_position.y].isopen = true
       if (this.username === "hunter") {
         this.table[this.current_position.x][this.current_position.y].ishunter = 1
       } else if (this.username === "cat") {
         this.table[this.current_position.x][this.current_position.y].iscat = 1
       } else {
-        console.log('观察者')
+        //console.log('观察者')
       }
 
       var msg = {
@@ -107,43 +117,142 @@ export default {
         username: this.username,
         type: 'position'
       }
-      this.socket.send(JSON.stringify(msg))
+
+      this.boomCount = this.table[this.current_position.x][this.current_position.y].value
+      // this.socket.send(JSON.stringify(msg))
     },
-    createBoom: function () {
+    createBoom(rowValue, colValue, count) {
+      if (count == 0) {
+        return 0;
+      } else {
+        var rand = Math.ceil(Math.random() * (rowValue * colValue - 1));
+        for (var i = 0; i < this.boomList.length; i++) {
+          if (this.boomList[i] == rand && this.current_position.x + this.current_position.y == rand) {
+            return this.createBoom(rowValue, colValue, count);
+          }
+        }
+        this.boomList.push(rand);
+
+        return this.createBoom(rowValue, colValue, --count);
+      }
+    },
+    insertBoom() {
+      for (var i = 0; i < 15; i++) {
+        for (var j = 0; j < 15; j++) {
+          for (var k = 0; k < this.boomList.length; k++) {
+            if (this.colValue * (i - 1) + j === this.boomList[k])
+              this.table[i][j].isboom = 1
+          }
+        }
+      }
+    },
+    createBoom2: function () {
+      this.table[9][3].isboom = 1
+      this.table[2][4].isboom = 1
+      this.table[6][14].isboom = 1
+      this.table[7][2].isboom = 1
+      this.table[14][1].isboom = 1
+      this.table[2][6].isboom = 1
       this.table[2][3].isboom = 1
-      this.table[2][5].isboom = 1
+      this.table[4][4].isboom = 1
+      this.table[5][14].isboom = 1
+      this.table[6][2].isboom = 1
+      this.table[14][3].isboom = 1
+      this.table[2][13].isboom = 1
     },
     open: function () {
-      console.log("socket连接成功")
+      //console.log("socket连接成功")
     },
     error: function () {
-      console.log("连接错误")
+      //console.log("连接错误")
     },
     getMessage: function (msg) {
       var data = JSON.parse(msg.data)
-      // console.log(data)
+      // //console.log(data)
       if (data.type === 'distance') {
         this.distance = data.distance
-        // console.log(this.distance)
+        // //console.log(this.distance)
       } else if (data.type === 'cat_pos') {
-        console.log(data.cat_pos)
-        console.log('---')
+        //console.log(data.cat_pos)
+        //console.log('---')
       } else if (data.type === 'hunter_pos') {
-        console.log(data.cat_pos)
-        console.log('---')
+        //console.log(data.cat_pos)
+        //console.log('---')
       }
 
     },
     send: function (msg) {
-      this.socket.send(JSON.stringify(msg))
+      //this.socket.send(JSON.stringify(msg))
     },
     close: function () {
-      console.log("socket已经关闭")
+      //console.log("socket已经关闭")
+    },
+    // 定义是否在区域内的方法
+    isArea(x, y, rowValue, colValue) {
+      if (x >= 0 && x < rowValue && y >= 0 && y < colValue) {
+        // console.log('true')
+        return true;
+
+      } else {
+        // console.log('false')
+        return false;
+
+      }
+    },
+    //定义打开格子事件
+    Open(x, y, rowValue, colValue) {
+      if (this.table[x][y].isboom) {
+        alert("gg!");
+        return;
+      }
+      this.table[x][y].issafe = true
+
+      if (this.table[x][y].value > 0) {
+        //console.log((x + 1).toString() + "行" + (y + 1).toString() + "列");
+        return;
+      }
+      for (var i = x - 1; i <= x + 1; i++) {
+        for (var j = y - 1; j <= y + 1; j++) {
+          if (
+            this.isArea(i, j, rowValue, colValue) &&
+            !this.table[i][j].issafe && !this.table[i][j].isopen && !this.table[x][y].isboom
+          ) {
+            //如果没有打开过且不是雷，则打开它
+            this.Open(i, j, rowValue, colValue);
+          }
+        }
+      }
+    },
+    //将每个格子里面的数字插入到列表里面的方法
+    InsertCount(rowValue, colValue) {
+      console.log(rowValue, colValue)
+      for (var x = 0; x < rowValue; x++) {
+        for (var y = 0; y < colValue; y++) {
+          if (this.isArea(x, y, rowValue, colValue) && (!this.table[x][y].isboom)
+          ) {
+            var count1 = 0;
+            for (var i = x - 1; i <= x + 1; i++) {
+              for (var j = y - 1; j <= y + 1; j++) {
+                if (this.isArea(i, j, rowValue, colValue)) {
+
+                  if (this.table[i][j].isboom) {
+                    count1 = count1 + 1;
+                  }
+                }
+              }
+            }
+            if (this.isArea(x, y, rowValue, colValue)) {
+              this.table[x][y].value = count1
+            }
+          }
+        }
+      }
     }
+
 
   },
   mounted() {
-    this.init()
+    // this.init()
 
 
   }

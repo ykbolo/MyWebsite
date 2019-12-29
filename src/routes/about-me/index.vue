@@ -6,10 +6,38 @@
       <div @click="setName(2)"><button>小动物</button></div>
     </div>
     <div v-else>
+      <div class="row">
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title ishunter"></span>
+          <span class="biaozhu-desc">猎人</span>
+        </div>
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title iscat"></span>
+          <span class="biaozhu-desc">猎物</span>
+        </div>
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title isboom"></span>
+          <span class="biaozhu-desc">炸弹</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title issafe"></span>
+          <span class="biaozhu-desc">安全区</span>
+        </div>
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title isunknown"></span>
+          <span class="biaozhu-desc">未知地带</span>
+        </div>
+        <div class="biaozhu col-4">
+          <span class="biaozhu-title isopen"></span>
+          <span class="biaozhu-desc">走过的路径</span>
+        </div>
+      </div>
       <table>
         <tbody>
           <tr v-for="(item,index) in table">
-            <td v-for="(value,idx) in item"><span v-bind:class="{ isopen: value.isopen===1,iscat:value.iscat,ishunter: value.ishunter===1,isboom:value.isoom===1 }"></span></td>
+            <td v-for="(value,idx) in item"><span v-bind:class="{ issafe:value.issafe,isopen: value.isopen,iscat:value.iscat,ishunter: value.ishunter,isboom:value.isboom }"></span></td>
           </tr>
         </tbody>
       </table>
@@ -26,13 +54,21 @@
         </div>
       </div>
     </div>
-    <div class="tip" v-if="username==='hunter'">距离猎物还有{{distance}}步</div>
-    <div class="tip" v-else>距离被抓到还有{{distance}}步</div>
-    <p></p>
-    <span>游戏规则</span>
-    <div>分为追捕者和被追捕者</div>
-    <div>被追捕者负责放置炸弹，最多不超过10个,可以在没有被打开的盒子中自由移动，如果追捕者碰到炸弹将获胜</div>
-    <div>追捕者可以看到距离被追捕者的最短距离，能显示所在炸弹的个数，追捕者与被追捕者重合则获胜</div>
+    <div class="tip margin-t-1x" v-if="username==='hunter'">
+      <div><span class="tip-title isboom"></span><span class="tip-desc">距离猎物还有<em>{{distance}}</em>步</span></div>
+      <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
+    </div>
+
+    <div class="tip margin-t-1x" v-else>距离被抓到还有{{distance}}步</div>
+    <p>
+    </p>
+
+    <span class="rule-title">游戏规则</span>
+    <div class="rule-desc margin-t-1x">分为<em>猎人</em>和<em>猎物</em><br>
+      随机生成若干个陷阱，踩到陷阱者失败,抓到猎物则猎人获胜<br>
+      <em>猎人和猎物均可根据提示自由移动</em><br>
+      <em>两者之间的距离</em>以及<em>周围陷阱个数</em>作为这场比赛的重要参照
+    </div>
   </div>
 </template>
 
