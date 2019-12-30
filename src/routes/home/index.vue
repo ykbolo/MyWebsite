@@ -37,6 +37,7 @@
       </div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
     </div>
+    <app-footer></app-footer>
   </div>
 </template>
 

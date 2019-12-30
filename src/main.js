@@ -1,20 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-// import store from './store'
-
-// import './core/boot'
 
 import 'bootstrap'
 import './styles/global.scss'
 import './styles/common.scss'
-// // global components
-// import './components'
 
-// // global directives
-// import './directives'
+import './components'
 
-// import i18n from './i18n'
 
 Vue.config.productionTip = false
 
