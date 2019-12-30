@@ -23,13 +23,13 @@
           <router-link :to="{name:'code'}" @click="showcode()">
             <img src="./images/daima.svg">
             <span>代码</span>
-            </a>
+          </router-link>
         </div>
         <div class="circle">
           <router-link :to="{name:'article'}" @click="showarticle()">
             <img src="./images/wenzhang.svg">
             <span>文章</span>
-            </a>
+          </router-link>
         </div>
       </div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
