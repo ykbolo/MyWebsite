@@ -87,45 +87,49 @@ export default {
       //console.log(this.table)
     },
     move(direction) {
-      let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
-      if (direction === "left" && this.current_position.y > 0) {
-        table_ishunter_pos.iscat = 0
-        table_ishunter_pos.ishunter = 0
-        this.current_position.y = this.current_position.y - 1
-      } else if (direction === "right" && this.current_position.y < 14) {
-        table_ishunter_pos.iscat = 0
-        table_ishunter_pos.ishunter = 0
-        this.current_position.y = this.current_position.y + 1
-      } else if (direction === "up" && this.current_position.x > 0) {
-        table_ishunter_pos.iscat = 0
-        table_ishunter_pos.ishunter = 0
-        this.current_position.x = this.current_position.x - 1
-      } else if (direction === "down" && this.current_position.x < 14) {
-        table_ishunter_pos.iscat = 0
-        table_ishunter_pos.ishunter = 0
-        this.current_position.x = this.current_position.x + 1
-      } else {
-        return
-      }
-      //console.log(this.current_position)
-      this.Open(this.current_position.x, this.current_position.y, this.rowValue, this.colValue)
-      this.table[this.current_position.x][this.current_position.y].isopen = true
-      if (this.username === "hunter") {
-        this.table[this.current_position.x][this.current_position.y].ishunter = 1
-      } else if (this.username === "cat") {
-        this.table[this.current_position.x][this.current_position.y].iscat = 1
-      } else {
-        //console.log('观察者')
-      }
+      if (!this.isgameover) {
 
-      var msg = {
-        current_position: this.current_position,
-        username: this.username,
-        type: 'position'
+
+        let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
+        if (direction === "left" && this.current_position.y > 0) {
+          table_ishunter_pos.iscat = 0
+          table_ishunter_pos.ishunter = 0
+          this.current_position.y = this.current_position.y - 1
+        } else if (direction === "right" && this.current_position.y < 14) {
+          table_ishunter_pos.iscat = 0
+          table_ishunter_pos.ishunter = 0
+          this.current_position.y = this.current_position.y + 1
+        } else if (direction === "up" && this.current_position.x > 0) {
+          table_ishunter_pos.iscat = 0
+          table_ishunter_pos.ishunter = 0
+          this.current_position.x = this.current_position.x - 1
+        } else if (direction === "down" && this.current_position.x < 14) {
+          table_ishunter_pos.iscat = 0
+          table_ishunter_pos.ishunter = 0
+          this.current_position.x = this.current_position.x + 1
+        } else {
+          return
+        }
+        //console.log(this.current_position)
+        this.Open(this.current_position.x, this.current_position.y, this.rowValue, this.colValue)
+        this.table[this.current_position.x][this.current_position.y].isopen = true
+        if (this.username === "hunter") {
+          this.table[this.current_position.x][this.current_position.y].ishunter = 1
+        } else if (this.username === "cat") {
+          this.table[this.current_position.x][this.current_position.y].iscat = 1
+        } else {
+          //console.log('观察者')
+        }
+
+        var msg = {
+          current_position: this.current_position,
+          username: this.username,
+          type: 'position'
+        }
+        console.log(msg)
+        this.boomCount = this.table[this.current_position.x][this.current_position.y].value
+        this.socket.send(JSON.stringify(msg))
       }
-      console.log(msg)
-      this.boomCount = this.table[this.current_position.x][this.current_position.y].value
-      this.socket.send(JSON.stringify(msg))
     },
     // createBoom(rowValue, colValue, count) {
     //   if (count == 0) {
@@ -196,9 +200,16 @@ export default {
         this.isgameover = true
         if (data.code === 0) {
           if (this.username === 'cat') {
+
             alert(data.to_cat)
           } else if (this.username === 'hunter') {
+
             alert(data.to_hunter)
+          }
+          if (data.loser === 'cat') {
+            this.table[data.pos.x][data.pos.y].iscat = 1
+          } else if (data.loser === 'hunter') {
+            this.table[data.pos.x][data.pos.y].ishunter = 1
           }
         } else if (data.code === 1) {
           if (this.username === 'cat') {
@@ -247,7 +258,8 @@ export default {
         var msg = {
           type: 'gameover',
           code: 0,
-          username: this.username
+          username: this.username,
+          current_position: this.current_position
         }
         this.socket.send(JSON.stringify(msg))
         return;

@@ -121,7 +121,9 @@ class ChatroomHandler(WebSocketHandler):
                   'type':'gameover',
                   'to_hunter':'你踩到了炸弹，任务失败',
                   'to_cat':'猎人踩到了炸弹，你安全了',
-                  'code':0
+                  'code':0,
+                  'pos':message['current_position'],
+                  'loser':message['username']
                 }))
             elif message['username']=='cat':
               for user in self.online_users:

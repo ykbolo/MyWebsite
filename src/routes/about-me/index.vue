@@ -3,7 +3,7 @@
   <div class="game">
     <div v-if="showChoose">
       <div @click="setName(1)"><button>猎人</button></div>
-      <div @click="setName(2)"><button>小动物</button></div>
+      <div @click="setName(2)"><button>猎物</button></div>
     </div>
     <div v-else>
       <div class="row">
@@ -23,11 +23,11 @@
       <div class="row">
         <div class="biaozhu col-4">
           <span class="biaozhu-title issafe"></span>
-          <span class="biaozhu-desc">安全区</span>
+          <span class="biaozhu-desc">绝对安全区</span>
         </div>
         <div class="biaozhu col-4">
           <span class="biaozhu-title isunknown"></span>
-          <span class="biaozhu-desc">未知地带</span>
+          <span class="biaozhu-desc">危险区</span>
         </div>
         <div class="biaozhu col-4">
           <span class="biaozhu-title isopen"></span>
