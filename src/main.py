@@ -113,6 +113,33 @@ class ChatroomHandler(WebSocketHandler):
                 }))
             # print(pos_hunter)
             # print(pos_cat)
+        elif message['type'] == 'gameover':
+          if message['code']==0:
+            if message['username']=='hunter':
+              for user in self.online_users:
+                user.write_message(json.dumps({
+                  'type':'gameover',
+                  'to_hunter':'你踩到了炸弹，任务失败',
+                  'to_cat':'猎人踩到了炸弹，你安全了',
+                  'code':0
+                }))
+            elif message['username']=='cat':
+              for user in self.online_users:
+                user.write_message(json.dumps({
+                  'type':'gameover',
+                  'to_hunter':'猎物踩到了炸弹，你可以饱餐一顿了',
+                  'to_cat':'你踩到了炸弹，要被吃了噢',
+                  'code':0
+                }))
+            
+          elif message['code']==1:
+            for user in self.online_users:
+              user.write_message(json.dumps({
+                'type':'gameover',
+                'to_hunter':'恭喜你成功抓到了猎物',
+                'to_cat':'猎人把你吃了噢',
+                'code':1
+              }))
 
     def on_close(self):
         print('close')

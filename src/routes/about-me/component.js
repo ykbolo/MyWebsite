@@ -23,6 +23,8 @@ export default {
       boomList: [],
       init_pos_cat: {},
       init_pos_hunter: {},
+      isgameover: false,
+      message: ''
     }
   },
 
@@ -169,6 +171,14 @@ export default {
       if (data.type === 'distance') {
         this.distance = data.distance
         // //console.log(this.distance)
+        if (this.distance === 0) {
+          this.message = '猎人抓到了猎物'
+          let msg = {
+            type: 'gameover',
+            code: 1
+          }
+          this.socket.send(JSON.stringify(msg))
+        }
       } else if (data.type === 'cat_pos') {
         console.log(data.cat_pos)
         //console.log('---')
@@ -182,6 +192,21 @@ export default {
         }
         this.insertBoom()
         this.InsertCount(this.rowValue, this.colValue)
+      } else if (data.type === 'gameover') {
+        this.isgameover = true
+        if (data.code === 0) {
+          if (this.username === 'cat') {
+            alert(data.to_cat)
+          } else if (this.username === 'hunter') {
+            alert(data.to_hunter)
+          }
+        } else if (data.code === 1) {
+          if (this.username === 'cat') {
+            alert(data.to_cat)
+          } else if (this.username === 'hunter') {
+            alert(data.hunter)
+          }
+        }
       }
       // } else if (data.type === 'init_pos') {
       //   console.log(data)
@@ -217,7 +242,14 @@ export default {
     //定义打开格子事件
     Open(x, y, rowValue, colValue) {
       if (this.table[x][y].isboom) {
-        alert("gg!");
+        this.isgameover = true
+
+        var msg = {
+          type: 'gameover',
+          code: 0,
+          username: this.username
+        }
+        this.socket.send(JSON.stringify(msg))
         return;
       }
       this.table[x][y].issafe = true

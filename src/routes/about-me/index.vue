@@ -37,7 +37,7 @@
       <table>
         <tbody>
           <tr v-for="(item,index) in table">
-            <td v-for="(value,idx) in item"><span v-bind:class="{ issafe:value.issafe,isopen: value.isopen,iscat:value.iscat,ishunter: value.ishunter,isboom:value.isboom }"></span></td>
+            <td v-for="(value,idx) in item"><span v-bind:class="{ issafe:value.issafe,isopen: value.isopen,iscat:value.iscat,ishunter: value.ishunter,isboom:value.isboom && isgameover && !value.ishunter && !value.iscat }"></span></td>
           </tr>
         </tbody>
       </table>
@@ -59,7 +59,10 @@
       <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
     </div>
 
-    <div class="tip margin-t-1x" v-else>距离被抓到还有{{distance}}步</div>
+    <div class="tip margin-t-1x" v-else>
+      <div><span class="tip-title isboom"></span><span class="tip-desc">距离被抓还有<em>{{distance}}</em>步</span></div>
+      <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
+    </div>
     <p>
     </p>
 
