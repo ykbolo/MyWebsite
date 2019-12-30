@@ -1,34 +1,26 @@
-import e from "cors"
-
-// import WebSocket from "vue-websocket";
-// import $ from 'jquery'
-// import { schemeGnBu } from 'd3'
 
 export default {
   name: 'about-me',
   data() {
     return {
-      showChoose: true,
-      npccolor: 'white',
-      username: '',
-      rowValue: 15,
-      colValue: 15,
-      table: [],
+      showChoose: true, // 是否显示选择界面
+      username: '', // 当前用户的用户名
+      rowValue: 15, // 表格行数
+      colValue: 15, // 表格列数
+      table: [], // 存放每个格子的各项数据
       current_position: {
         x: 0,
         y: 0
-      },
-      distance: '*',
-      boomCount: 0,
-      boomList: [],
-      init_pos_cat: {},
-      init_pos_hunter: {},
-      isgameover: false,
-      message: ''
+      }, // 当前用户所在的坐标
+      distance: '*', // 猎人和猎物的距离
+      boomCount: 0, // 当前所在位置周围炸弹的数量
+      boomList: [], // 存放炸弹随机数的列表
+      isgameover: false, // 游戏是否结束
     }
   },
 
   methods: {
+    // 选择角色的点击事件
     setName(type) {
       if (type === 1) {
         this.username = "hunter"
@@ -40,9 +32,6 @@ export default {
       this.showChoose = false
       this.init()
       this.initTable()
-      // this.createBoom(this.rowValue, this.colValue, 20)
-
-      console.log(this.table)
     },
     init: function () {
       if (typeof (WebSocket) === "undefined") {
@@ -58,34 +47,35 @@ export default {
         this.socket.onmessage = this.getMessage
       }
     },
+    // 初始化游戏区的数据
     initTable: function () {
+      // let tb_pos = this.table[this.current_position.x][this.current_position.y] // 用于定位当前的位置所在的格子
       for (var i = 0; i < 15; i++) {
         this.table.push([])
         for (var j = 0; j < 15; j++) {
           this.table[i].push({
-            isopen: false,
-            ishunter: 0,
-            isboom: 0,
-            isgift: 0,
-            iscat: 0,
-            value: 0,
-            issafe: false
+            isopen: false, // 是否走过该路径
+            ishunter: 0, // 是否是猎人所在的格子
+            isboom: 0, // 是否是雷
+            iscat: 0, // 是否是猎物所在的格子
+            value: 0, // 当前格子周围炸弹的数量
+            issafe: false // 是否是安全区--由排雷函数计算得知
           })
         }
       }
-      this.table[this.current_position.x][this.current_position.y].isopen = 1
+      let tb_pos = this.table[this.current_position.x][this.current_position.y] // 用于定位当前的位置所在的格子
+      tb_pos.isopen = 1
       //console.log(this.username)
       if (this.username == "hunter") {
-        this.table[this.current_position.x][this.current_position.y].ishunter = 1
+        tb_pos.ishunter = 1
       } else if (this.username == "cat") {
         //console.log('cat')
-        this.table[this.current_position.x][this.current_position.y].iscat = 1
+        tb_pos.iscat = 1
       } else {
         //console.log('观察')
       }
-
-      //console.log(this.table)
     },
+    // 移动函数
     move(direction) {
       if (!this.isgameover) {
 
@@ -110,13 +100,14 @@ export default {
         } else {
           return
         }
+        let tb_pos = this.table[this.current_position.x][this.current_position.y] // 赋值改变后的定位
         //console.log(this.current_position)
         this.Open(this.current_position.x, this.current_position.y, this.rowValue, this.colValue)
-        this.table[this.current_position.x][this.current_position.y].isopen = true
+        tb_pos.isopen = true
         if (this.username === "hunter") {
-          this.table[this.current_position.x][this.current_position.y].ishunter = 1
+          tb_pos.ishunter = 1
         } else if (this.username === "cat") {
-          this.table[this.current_position.x][this.current_position.y].iscat = 1
+          tb_pos.iscat = 1
         } else {
           //console.log('观察者')
         }
@@ -127,47 +118,31 @@ export default {
           type: 'position'
         }
         console.log(msg)
-        this.boomCount = this.table[this.current_position.x][this.current_position.y].value
+        this.boomCount = tb_pos.value
         this.socket.send(JSON.stringify(msg))
       }
     },
-    // createBoom(rowValue, colValue, count) {
-    //   if (count == 0) {
-    //     return 0;
-    //   } else {
-    //     var rand = Math.ceil(Math.random() * (rowValue * colValue - 1));
-    //     for (var i = 0; i < this.boomList.length; i++) {
-    //       if (this.boomList[i] == rand && this.current_position.x + this.current_position.y == rand) {
-    //         return this.createBoom(rowValue, colValue, count);
-    //       }
-    //     }
-    //     this.boomList.push(rand);
-
-    //     return this.createBoom(rowValue, colValue, --count);
-    //   }
-    // },
+    // 用于把随机生成的雷插到游戏区内部
     insertBoom() {
-      console.log(this.boomList)
-      var count = 0
+      // console.log(this.boomList)
+      // var count = 0
       for (var i = 0; i < 15; i++) {
         for (var j = 0; j < 15; j++) {
           for (var k = 0; k < this.boomList.length; k++) {
             if (this.colValue * i + j === this.boomList[k]) {
               count++
-              console.log(count)
+              // console.log(count)
               this.table[i][j].isboom = 1
             }
           }
         }
       }
     },
-
     open: function () {
       console.log("socket连接成功")
-
     },
     error: function () {
-      //console.log("连接错误")
+      console.log("连接错误")
     },
     getMessage: function (msg) {
       var data = JSON.parse(msg.data)
@@ -176,7 +151,7 @@ export default {
         this.distance = data.distance
         // //console.log(this.distance)
         if (this.distance === 0) {
-          this.message = '猎人抓到了猎物'
+          // this.message = '猎人抓到了猎物'
           let msg = {
             type: 'gameover',
             code: 1
@@ -219,21 +194,6 @@ export default {
           }
         }
       }
-      // } else if (data.type === 'init_pos') {
-      //   console.log(data)
-      //   this.init_pos_cat = data.cat_pos
-      //   this.init_pos_hunter = data.hunter_pos
-      //   // if (this.username === 'hunter') {
-      //   //   this.current_position = data.hunter_pos
-      //   // } else if (this.username === 'cat') {
-      //   //   this.current_position = data.cat_pos
-      //   // }
-
-      // }
-
-    },
-    send: function (msg) {
-      //this.socket.send(JSON.stringify(msg))
     },
     close: function () {
       //console.log("socket已经关闭")
