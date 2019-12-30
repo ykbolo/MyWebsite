@@ -1,7 +1,7 @@
 <template>
   <div class="game-list">
     <div v-if="showlist">
-      <div @click="showcontent(1)" class="every margin-t-1x">
+      <!-- <div @click="showcontent(1)" class="every margin-t-1x">
         <div class="every-head">
           <span>第一：英雄联盟</span>
           <br></div>
@@ -18,7 +18,7 @@
           <span>第三：王者荣耀</span>
           <br></div>
         <div class="every-body">小白也能会的git命令</div>
-      </div>
+      </div> -->
     </div>
     <div v-else>
       <app-content :id="id" type='game'></app-content>

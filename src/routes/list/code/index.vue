@@ -1,7 +1,7 @@
 <template>
   <div class="aritcle-list">
     <div v-if="showlist">
-      <div class="every margin-t-1x">
+      <!-- <div class="every margin-t-1x">
         <div class="every-head">
           <span>第一：开放源码</span>
           <br></div>
@@ -18,7 +18,7 @@
           <span>第三：git的使用</span>
           <br></div>
         <div class="every-body">小白也能会的git命令</div>
-      </div>
+      </div> -->
     </div>
     <div v-else>
       <app-content :id="id" type='code'></app-content>
