@@ -1,6 +1,6 @@
 
 export default {
-  name: 'about-me',
+  name: 'share',
   data() {
     return {
       showChoose: true, // 是否显示选择界面
@@ -125,7 +125,7 @@ export default {
     // 用于把随机生成的雷插到游戏区内部
     insertBoom() {
       // console.log(this.boomList)
-      // var count = 0
+      var count = 0
       for (var i = 0; i < 15; i++) {
         for (var j = 0; j < 15; j++) {
           for (var k = 0; k < this.boomList.length; k++) {
