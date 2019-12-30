@@ -8,9 +8,12 @@
       <div class="title">
         <h1>YorK的世界</h1>
         <div @click="changeHover">
-          <p v-if='isHover'>逃离自己的舒适区</p>
-          <p v-else>Escape from your comfort zone</p>
+          <p v-if='isHover'>ezreal-yk.cn</p>
+          <p v-else>503589510@qq.com</p>
         </div>
+        <a href="/share">
+          <h1>游戏入口</h1>
+        </a>
       </div>
       <div id="nav">
         <div class="circle">
@@ -34,6 +37,7 @@
       </div>
       <hr class="seperator_betweenNavAndLink" color="#eee">
     </div>
+    <app-footer></app-footer>
   </div>
 </template>
 
