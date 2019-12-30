@@ -20,7 +20,9 @@ export default {
       },
       distance: '*',
       boomCount: 0,
-      boomList: []
+      boomList: [],
+      init_pos_cat: {},
+      init_pos_hunter: {},
     }
   },
 
@@ -28,14 +30,16 @@ export default {
     setName(type) {
       if (type === 1) {
         this.username = "hunter"
+        this.current_position = { x: 0, y: 0 }
       } else {
         this.username = "cat"
+        this.current_position = { x: 14, y: 14 }
       }
       this.showChoose = false
+      this.init()
       this.initTable()
-      this.createBoom(this.rowValue, this.colValue, 20)
-      this.insertBoom()
-      this.InsertCount(this.rowValue, this.colValue)
+      // this.createBoom(this.rowValue, this.colValue, 20)
+
       console.log(this.table)
     },
     init: function () {
@@ -117,51 +121,44 @@ export default {
         username: this.username,
         type: 'position'
       }
-
+      console.log(msg)
       this.boomCount = this.table[this.current_position.x][this.current_position.y].value
-      // this.socket.send(JSON.stringify(msg))
+      this.socket.send(JSON.stringify(msg))
     },
-    createBoom(rowValue, colValue, count) {
-      if (count == 0) {
-        return 0;
-      } else {
-        var rand = Math.ceil(Math.random() * (rowValue * colValue - 1));
-        for (var i = 0; i < this.boomList.length; i++) {
-          if (this.boomList[i] == rand && this.current_position.x + this.current_position.y == rand) {
-            return this.createBoom(rowValue, colValue, count);
-          }
-        }
-        this.boomList.push(rand);
+    // createBoom(rowValue, colValue, count) {
+    //   if (count == 0) {
+    //     return 0;
+    //   } else {
+    //     var rand = Math.ceil(Math.random() * (rowValue * colValue - 1));
+    //     for (var i = 0; i < this.boomList.length; i++) {
+    //       if (this.boomList[i] == rand && this.current_position.x + this.current_position.y == rand) {
+    //         return this.createBoom(rowValue, colValue, count);
+    //       }
+    //     }
+    //     this.boomList.push(rand);
 
-        return this.createBoom(rowValue, colValue, --count);
-      }
-    },
+    //     return this.createBoom(rowValue, colValue, --count);
+    //   }
+    // },
     insertBoom() {
+      console.log(this.boomList)
+      var count = 0
       for (var i = 0; i < 15; i++) {
         for (var j = 0; j < 15; j++) {
           for (var k = 0; k < this.boomList.length; k++) {
-            if (this.colValue * (i - 1) + j === this.boomList[k])
+            if (this.colValue * i + j === this.boomList[k]) {
+              count++
+              console.log(count)
               this.table[i][j].isboom = 1
+            }
           }
         }
       }
     },
-    createBoom2: function () {
-      this.table[9][3].isboom = 1
-      this.table[2][4].isboom = 1
-      this.table[6][14].isboom = 1
-      this.table[7][2].isboom = 1
-      this.table[14][1].isboom = 1
-      this.table[2][6].isboom = 1
-      this.table[2][3].isboom = 1
-      this.table[4][4].isboom = 1
-      this.table[5][14].isboom = 1
-      this.table[6][2].isboom = 1
-      this.table[14][3].isboom = 1
-      this.table[2][13].isboom = 1
-    },
+
     open: function () {
-      //console.log("socket连接成功")
+      console.log("socket连接成功")
+
     },
     error: function () {
       //console.log("连接错误")
@@ -173,12 +170,30 @@ export default {
         this.distance = data.distance
         // //console.log(this.distance)
       } else if (data.type === 'cat_pos') {
-        //console.log(data.cat_pos)
+        console.log(data.cat_pos)
         //console.log('---')
       } else if (data.type === 'hunter_pos') {
-        //console.log(data.cat_pos)
+        console.log(data.cat_pos)
         //console.log('---')
+      } else if (data.type === 'boomList') {
+        console.log(data.boomList)
+        for (var i = 0; i < data.boomList.length; i++) {
+          this.boomList.push(data.boomList[i])
+        }
+        this.insertBoom()
+        this.InsertCount(this.rowValue, this.colValue)
       }
+      // } else if (data.type === 'init_pos') {
+      //   console.log(data)
+      //   this.init_pos_cat = data.cat_pos
+      //   this.init_pos_hunter = data.hunter_pos
+      //   // if (this.username === 'hunter') {
+      //   //   this.current_position = data.hunter_pos
+      //   // } else if (this.username === 'cat') {
+      //   //   this.current_position = data.cat_pos
+      //   // }
+
+      // }
 
     },
     send: function (msg) {
@@ -252,7 +267,7 @@ export default {
 
   },
   mounted() {
-    // this.init()
+
 
 
   }
