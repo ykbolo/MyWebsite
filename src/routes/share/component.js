@@ -38,7 +38,8 @@ export default {
         alert("您的浏览器不支持socket")
       } else {
         // 实例化socket
-        this.socket = new WebSocket('ws://127.0.0.1:8880/game')
+        this.socket = new WebSocket('ws://192.144.235.129:8880/game')
+        // this.socket = new WebSocket('ws://127.0.0.1:8880/game')
         // 监听socket连接
         this.socket.onopen = this.open
         // 监听socket错误信息
