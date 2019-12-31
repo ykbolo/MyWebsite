@@ -1,6 +1,8 @@
 # 基于 websocket 实现双人小游戏
 
-#### --->[游戏入口](http://ezreal-yk.cn/share) <---
+#### --->[游戏入口](http://ezreal-yk.cn/share?_blank) <---
+
+#### --->[ppt 下载](http://ezreal-yk.cn/share.pptx?_blank) <---
 
 ## 采用技术
 
