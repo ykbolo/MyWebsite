@@ -25,9 +25,10 @@ pos_hunter={'x':0,'y':0} # 猎人的初始位置
 
 class ChatroomHandler(WebSocketHandler):
     online_users = set()
-    global boomList # 声明全局变量
+    global boomList 
+    # 声明全局变量
     # 生成随机数，若生成重复数字或者在npc的位置上，重新生成
-    def createBoom(self,rowValue,colValue,count):
+    def createBoom(self,rowValue,colValue,count): 
         global pos_cat
         global pos_hunter
         if count == 0:
@@ -36,7 +37,7 @@ class ChatroomHandler(WebSocketHandler):
             rand = random.randint(0,rowValue*colValue-1)
             for x in boomList:
                 if x == rand or rand== pos_cat['x']*colValue+pos_cat['y'] or rand== pos_hunter['x']*colValue+pos_hunter['y']:
-                    return createBoom(rowValue,colValue,count)
+                    return self.createBoom(rowValue,colValue,count)
         boomList.append(rand)
         # print(count-1)
         return self.createBoom(rowValue,colValue,count-1)
