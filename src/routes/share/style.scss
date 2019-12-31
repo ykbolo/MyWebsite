@@ -11,6 +11,12 @@ em {
 .game {
   text-align: center;
 
+  .errmess {
+    font-weight: 600;
+    color: #E68442;
+    cursor: pointer;
+  }
+
   .biaozhu {
     .biaozhu-title {
       width: 25px;

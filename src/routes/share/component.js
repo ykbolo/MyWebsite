@@ -15,7 +15,9 @@ export default {
       distance: '*', // 猎人和猎物的距离
       boomCount: 0, // 当前所在位置周围炸弹的数量
       boomList: [], // 存放炸弹随机数的列表
-      isgameover: false, // 游戏是否结束
+      isgameover: false, // 游戏是否结束,
+      isvip: false,
+      gameovermessage: ''
     }
   },
 
@@ -78,7 +80,7 @@ export default {
     },
     // 移动函数
     move(direction) {
-      if (!this.isgameover) {
+      if (!this.isgameover && !this.isvip) {
 
 
         let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
@@ -176,24 +178,56 @@ export default {
         this.isgameover = true
         if (data.code === 0) {
           if (this.username === 'cat') {
-
-            alert(data.to_cat)
+            this.gameovermessage = data.to_cat
+            // window.location.reload()
           } else if (this.username === 'hunter') {
-
-            alert(data.to_hunter)
+            this.gameovermessage = data.to_hunter
+            // window.location.reload()
           }
           if (data.loser === 'cat') {
             this.table[data.pos.x][data.pos.y].iscat = 1
           } else if (data.loser === 'hunter') {
             this.table[data.pos.x][data.pos.y].ishunter = 1
           }
+
         } else if (data.code === 1) {
           if (this.username === 'cat') {
-            alert(data.to_cat)
+            this.gameovermessage = data.to_cat
           } else if (this.username === 'hunter') {
-            alert(data.hunter)
+            this.gameovermessage = data.to_hunter
+          } else {
+            this.gameovermessage = '猎人抓到了猎物'
           }
         }
+      } else if (data.type === 'isvip_set') {
+        console.log(data)
+        this.isvip = true
+        this.username = 'vip'
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
+      } else if (data.type === 'isvip' && this.isvip === true) {
+        console.log(data)
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
+        // 不必知道移动前的位置，把它上一步的残影清空先
+        for (var a1 = data.hunter_pos.x - 1; a1 <= data.hunter_pos.x + 1; a1++) {
+          for (var b1 = data.hunter_pos.y - 1; b1 <= data.hunter_pos.y + 1; b1++) {
+            if (this.isArea(a1, b1, this.rowValue, this.colValue)) {
+              this.table[a1][b1].ishunter = 0
+              this.table[a1][b1].iscat = 0
+            }
+          }
+        }
+        for (var a2 = data.cat_pos.x - 1; a2 <= data.cat_pos.x + 1; a2++) {
+          for (var b2 = data.cat_pos.y - 1; b2 <= data.cat_pos.y + 1; b2++) {
+            if (this.isArea(a2, b2, this.rowValue, this.colValue)) {
+              this.table[a2][b2].ishunter = 0
+              this.table[a2][b2].iscat = 0
+            }
+          }
+        }
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
       }
     },
     close: function () {
@@ -267,8 +301,10 @@ export default {
           }
         }
       }
+    },
+    refresh() {
+      window.location.reload()
     }
-
 
   },
   mounted() {
