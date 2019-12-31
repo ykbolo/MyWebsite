@@ -2,7 +2,12 @@
 
 #### --->[游戏入口](http://ezreal-yk.cn/share) <---
 
-## 采用技术 `html5,vue,python,websocket`
+## 采用技术
+
+- HTML5
+- WebSocket
+- Vue
+- Python
 
 ## 游戏规则
 
@@ -33,6 +38,7 @@
       <div @click="setName(2)"><button>猎物</button></div>
     </div>
     <div v-else>
+
       <div class="row">
         <div class="biaozhu col-4">
           <span class="biaozhu-title ishunter"></span>
@@ -61,39 +67,44 @@
           <span class="biaozhu-desc">走过的路径</span>
         </div>
       </div>
-      <table>
-        <tbody>
-          <tr v-for="(item,index) in table">
-            <td v-for="(value,idx) in item"><span v-bind:class="{ issafe:value.issafe,isopen: value.isopen,iscat:value.iscat,ishunter: value.ishunter,isboom:value.isboom && isgameover && !value.ishunter && !value.iscat }"></span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-if="!isgameover">
+        <table>
+          <tbody>
+            <tr v-for="(item,index) in table">
+              <td v-for="(value,idx) in item"><span v-bind:class="{ issafe:value.issafe,isopen: value.isopen,iscat:value.iscat,ishunter: value.ishunter,isboom:(value.isboom && (isgameover || isvip) && !value.ishunter && !value.iscat) }"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div v-else class="errmess" @click="refresh()">{{gameovermessage}},点击退出</div>
     </div>
-    <div class="controller">
-      <div style="display:inline-block">
-        <div class="row">
-          <span class="shang" @click="move('up')">↑</span>
-          <div class="col-12">
-            <span class="zuo" @click="move('left')">←</span>
-            <span class="xia margin-l-5px" @click="move('down')">↓</span>
-            <span class="you margin-l-5px" @click="move('right')">→</span>
+    <div v-if="isvip===false">
+      <div class="controller">
+        <div style="display:inline-block">
+          <div class="row">
+            <span class="shang" @click="move('up')">↑</span>
+            <div class="col-12">
+              <span class="zuo" @click="move('left')">←</span>
+              <span class="xia margin-l-5px" @click="move('down')">↓</span>
+              <span class="you margin-l-5px" @click="move('right')">→</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="tip margin-t-1x" v-if="username==='hunter'">
-      <div><span class="tip-title isboom"></span><span class="tip-desc">距离猎物还有<em>{{distance}}</em>步</span></div>
-      <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
-    </div>
+      <div class="tip margin-t-1x" v-if="username==='hunter'">
+        <div><span class="tip-title isboom"></span><span class="tip-desc">距离猎物还有<em>{{distance}}</em>步</span></div>
+        <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
+      </div>
 
-    <div class="tip margin-t-1x" v-else>
-      <div><span class="tip-title isboom"></span><span class="tip-desc">距离被抓还有<em>{{distance}}</em>步</span></div>
-      <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
+      <div class="tip margin-t-1x" v-else>
+        <div><span class="tip-title isboom"></span><span class="tip-desc">距离被抓还有<em>{{distance}}</em>步</span></div>
+        <div><span class="tip-title isboom"></span><span class="tip-desc">周围雷数<em>{{boomCount}}</em></span></div>
+      </div>
+      <p>
+      </p>
     </div>
-    <p>
-    </p>
-
-    <span class="rule-title">游戏规则</span>
+    <div v-else class="rule-title margin-t-1x">你当前是观察者</div>
+    <div class="rule-title margin-t-1x">游戏规则</div>
     <div class="rule-desc margin-t-1x">分为<em>猎人</em>和<em>猎物</em><br>
       随机生成若干个陷阱，踩到陷阱者失败,抓到猎物则猎人获胜<br>
       <em>猎人和猎物均可根据提示自由移动</em><br>
@@ -107,11 +118,13 @@
 </script>
 <style lang="scss" src="./style.scss"></style>
 
+
 ```
 
 ### component.js
 
 ```
+
 export default {
   name: 'share',
   data() {
@@ -128,7 +141,9 @@ export default {
       distance: '*', // 猎人和猎物的距离
       boomCount: 0, // 当前所在位置周围炸弹的数量
       boomList: [], // 存放炸弹随机数的列表
-      isgameover: false, // 游戏是否结束
+      isgameover: false, // 游戏是否结束,
+      isvip: false,
+      gameovermessage: ''
     }
   },
 
@@ -191,7 +206,9 @@ export default {
     },
     // 移动函数
     move(direction) {
-      if (!this.isgameover) {
+      if (!this.isgameover && !this.isvip) {
+
+
         let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
         if (direction === "left" && this.current_position.y > 0) {
           table_ishunter_pos.iscat = 0
@@ -287,24 +304,56 @@ export default {
         this.isgameover = true
         if (data.code === 0) {
           if (this.username === 'cat') {
-
-            alert(data.to_cat)
+            this.gameovermessage = data.to_cat
+            // window.location.reload()
           } else if (this.username === 'hunter') {
-
-            alert(data.to_hunter)
+            this.gameovermessage = data.to_hunter
+            // window.location.reload()
           }
           if (data.loser === 'cat') {
             this.table[data.pos.x][data.pos.y].iscat = 1
           } else if (data.loser === 'hunter') {
             this.table[data.pos.x][data.pos.y].ishunter = 1
           }
+
         } else if (data.code === 1) {
           if (this.username === 'cat') {
-            alert(data.to_cat)
+            this.gameovermessage = data.to_cat
           } else if (this.username === 'hunter') {
-            alert(data.hunter)
+            this.gameovermessage = data.to_hunter
+          } else {
+            this.gameovermessage = '猎人抓到了猎物'
           }
         }
+      } else if (data.type === 'isvip_set') {
+        console.log(data)
+        this.isvip = true
+        this.username = 'vip'
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
+      } else if (data.type === 'isvip' && this.isvip === true) {
+        console.log(data)
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
+        // 不必知道移动前的位置，把它上一步的残影清空先
+        for (var a1 = data.hunter_pos.x - 1; a1 <= data.hunter_pos.x + 1; a1++) {
+          for (var b1 = data.hunter_pos.y - 1; b1 <= data.hunter_pos.y + 1; b1++) {
+            if (this.isArea(a1, b1, this.rowValue, this.colValue)) {
+              this.table[a1][b1].ishunter = 0
+              this.table[a1][b1].iscat = 0
+            }
+          }
+        }
+        for (var a2 = data.cat_pos.x - 1; a2 <= data.cat_pos.x + 1; a2++) {
+          for (var b2 = data.cat_pos.y - 1; b2 <= data.cat_pos.y + 1; b2++) {
+            if (this.isArea(a2, b2, this.rowValue, this.colValue)) {
+              this.table[a2][b2].ishunter = 0
+              this.table[a2][b2].iscat = 0
+            }
+          }
+        }
+        this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
+        this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
       }
     },
     close: function () {
@@ -378,9 +427,14 @@ export default {
           }
         }
       }
+    },
+    refresh() {
+      window.location.reload()
     }
+
   },
   mounted() {
+
 
 
   }
@@ -402,6 +456,12 @@ em {
 
 .game {
   text-align: center;
+
+  .errmess {
+    font-weight: 600;
+    color: #E68442;
+    cursor: pointer;
+  }
 
   .biaozhu {
     .biaozhu-title {
@@ -550,6 +610,7 @@ em {
     }
   }
 }
+
 ```
 
 ## 后端代码
@@ -578,14 +639,14 @@ from tornado.websocket import WebSocketHandler
 '''
 define("port", default=8880, help="run on the given port", type=int)
 define("debug", default=False, help="run in debug mode")
-boomList = []
-pos_cat={'x':14,'y':14}
-pos_hunter={'x':0,'y':0}
+boomList = [] # 生成炸弹的列表
+pos_cat={'x':14,'y':14} # 猎物的初始位置
+pos_hunter={'x':0,'y':0} # 猎人的初始位置
+
 class ChatroomHandler(WebSocketHandler):
     online_users = set()
-
-    global boomList
-
+    global boomList # 声明全局变量
+    # 生成随机数，若生成重复数字或者在npc的位置上，重新生成
     def createBoom(self,rowValue,colValue,count):
         global pos_cat
         global pos_hunter
@@ -594,11 +655,12 @@ class ChatroomHandler(WebSocketHandler):
         else:
             rand = random.randint(0,rowValue*colValue-1)
             for x in boomList:
-                if x == rand and rand== pos_cat['x']*colValue+pos_cat['y'] and rand== pos_hunter['x']*colValue+pos_hunter['y']:
+                if x == rand or rand== pos_cat['x']*colValue+pos_cat['y'] or rand== pos_hunter['x']*colValue+pos_hunter['y']:
                     return createBoom(rowValue,colValue,count)
         boomList.append(rand)
         # print(count-1)
         return self.createBoom(rowValue,colValue,count-1)
+    # 计算cat和hunter之间最短距离的函数，算法是 sum=|y1-y2|+|x1-x2|
     def cal_distance(self):
         global pos_cat
         global pos_hunter
@@ -612,14 +674,11 @@ class ChatroomHandler(WebSocketHandler):
         print(distance)
         return distance
 
-    def reg(self, message):
-        print('reg')
-        # 重写open方法，当有新的聊天用户进入的时候自动触发该函数
-
+    # 重写open方法，当有新的聊天用户进入的时候自动触发该函数
     def open(self):
         global pos_cat
         global pos_hunter
-        print(len(self.online_users))
+        # print(len(self.online_users))
         # 每当有客户端连接，则增加一个对象==当有新的用户上线，将该用户加入集合中
         global boomList
         self.online_users.add(self)
@@ -627,26 +686,31 @@ class ChatroomHandler(WebSocketHandler):
         if len(self.online_users) == 1:
             boomList=[]
             self.createBoom(15,15,20)
-            # print(self.boomList)
+
         for user in self.online_users:
-            print('1')
-            print(boomList)
+            # 告诉每个用户炸弹随机数列表
             user.write_message(json.dumps({
               'type':'boomList',
               'boomList':boomList
             }))
             user.write_message(json.dumps({
-                'type':'init_pos',
-                'cat_pos':pos_cat,
-                'hunter_pos':pos_hunter
+              'type':'user_num',
+              'user_num':len(self.online_users)
             }))
-
+        if len(self.online_users)>2:
+            self.write_message(json.dumps({
+              'type':'isvip_set',
+              'cat_pos':pos_cat,
+              'hunter_pos':pos_hunter
+            }))
+        print(self.online_users)
     # on_message方法，当客户端有消息传来后，则
     def on_message(self, message):
         global pos_cat
         global pos_hunter
         message = json.loads(message)
         if message['type'] == 'position':
+            # 设置前端传来的npc位置
             if message['username'] == 'hunter':
                 print('hunter')
                 pos_hunter = message['current_position']
@@ -655,9 +719,10 @@ class ChatroomHandler(WebSocketHandler):
                 pos_cat = message['current_position']
             else:
                 return
-            distance = self.cal_distance()
-            print('distance',distance)
+            distance = self.cal_distance() # 计算距离
+            # print('distance',distance)
             for user in self.online_users:
+                # 把距离，npc位置发送给前端
                 user.write_message(json.dumps({
                     'type': 'distance',
                     'distance': distance
@@ -670,11 +735,18 @@ class ChatroomHandler(WebSocketHandler):
                     'type': 'cat_hunter',
                     'hunter_pos': pos_hunter
                 }))
-            # print(pos_hunter)
-            # print(pos_cat)
+                user.write_message(json.dumps({
+                    'type':'isvip',
+                    'cat_pos':pos_cat,
+                    'hunter_pos':pos_hunter
+                }))
+
         elif message['type'] == 'gameover':
+          # 前端传来游戏结束的消息
           if message['code']==0:
+            # 踩到炸弹的情况
             if message['username']=='hunter':
+              # 猎人踩到炸弹
               for user in self.online_users:
                 user.write_message(json.dumps({
                   'type':'gameover',
@@ -682,18 +754,22 @@ class ChatroomHandler(WebSocketHandler):
                   'to_cat':'猎人踩到了炸弹，你安全了',
                   'code':0,
                   'pos':message['current_position'],
-                  'loser':message['username']
+                  'loser':message['username'] # 发送是谁踩到了
                 }))
             elif message['username']=='cat':
+              # 猎物踩到炸弹
               for user in self.online_users:
                 user.write_message(json.dumps({
                   'type':'gameover',
                   'to_hunter':'猎物踩到了炸弹，你可以饱餐一顿了',
                   'to_cat':'你踩到了炸弹，要被吃了噢',
-                  'code':0
+                  'code':0,
+                  'pos':message['current_position'],
+                  'loser':message['username'] # 发送是谁踩到了
                 }))
 
           elif message['code']==1:
+            # 被猎人抓到的情况
             for user in self.online_users:
               user.write_message(json.dumps({
                 'type':'gameover',
@@ -704,12 +780,13 @@ class ChatroomHandler(WebSocketHandler):
 
     def on_close(self):
         print('close')
-        # 当有用户退出时，将它移除克！
+        global pos_cat
+        global pos_hunter
         self.online_users.remove(self)
-        # print(len(self.online_users))
-        # self.boomList = []
-        # print('close')
-        # print(self.boomList)
+        if len(self.online_users) == 0:
+          pos_cat = {'x':14,'y':14}
+          pos_hunter = {'x':0,'y':0}
+
 
     def post(self):
         self.render("logout.html")

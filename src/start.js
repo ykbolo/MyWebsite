@@ -35,5 +35,5 @@ app.get('*', function (req, res) {
 // 后端api路由
 // app.use('/api', userApi);
 // 监听端口
-app.listen(80);
+app.listen(8080);
 console.log('success listen at port:8080......');
