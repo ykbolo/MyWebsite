@@ -1,3 +1,25 @@
 .app-content {
   padding: 20px;
+
+  img {
+    // max-width: 50%;
+    max-height: 500px;
+    width: auto;
+  }
+
+  pre {
+    background: #eeeeee;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    overflow: auto;
+    // border: 2px solid #666666;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  }
+
+
+
+
+  h3 {
+    background: rgba(114, 114, 114, 0.3);
+  }
 }

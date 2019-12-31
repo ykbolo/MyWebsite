@@ -1,12 +1,13 @@
 <template>
   <div class="game-list">
     <div v-if="showlist">
-      <!-- <div @click="showcontent(1)" class="every margin-t-1x">
+      <div @click="showcontent(1)" class="every margin-t-1x">
         <div class="every-head">
-          <span>第一：英雄联盟</span>
+          <span>第一：猎人与猎物</span>
           <br></div>
-        <div class="every-body">vue项目的架构思路以及引入包</div>
+        <div class="every-body">基于websocket实现的web段小游戏</div>
       </div>
+      <!--
       <div @click="showcontent(2)" class="every">
         <div class="every-head">
           <span>第二：守望先锋</span>

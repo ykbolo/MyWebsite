@@ -8,6 +8,6 @@
 <script src="./component.js">
 
 </script>
-<style lang="scss" src="./style.scss" scoped>
+<style lang="scss" src="./style.scss">
 
 </style>
