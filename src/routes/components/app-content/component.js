@@ -11,13 +11,13 @@ export default {
 
   ],
   mounted() {
-    console.log('-----')
-    console.log(this.id)
+    // console.log('-----')
+    // console.log(this.id)
     this.getHtml()
 
     window.addEventListener("popstate", () => {
-      alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
-      console.log(this.type)
+      // alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能 
+      // console.log(this.type)
       alert(this.type)
       window.location.href = `/list/${this.type}`
     }, false);
