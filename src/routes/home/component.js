@@ -1,3 +1,6 @@
+
+
+
 export default {
   data() {
     return {
@@ -11,5 +14,5 @@ export default {
       this.isHover = !this.isHover
     }
   },
-  mounted() { }
+  mounted() { console.log(this._env_) }
 }

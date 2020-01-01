@@ -8,6 +8,11 @@ const app = express();
 var http = require('http');
 var marked = require('marked');
 
+
+let port = process.env.NODE_ENV === "dev" ? '8080' : '80'
+console.log(process.env.NODE_ENV)
+
+
 app.use(express.static('src'));  //加载静态文件
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -36,5 +41,5 @@ app.get('*', function (req, res) {
 // 后端api路由
 // app.use('/api', userApi);
 // 监听端口
-app.listen(80);
-console.log('success listen at port:8080......');
+app.listen(port);
+console.log(`success listen at port:${port}......`);

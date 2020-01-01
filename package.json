@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "cross-env NODE_ENV=dev vue-cli-service serve",
+    "build:dev": "cross-env NODE_ENV=dev vue-cli-service build",
+    "build:prod": "cross-env NODE_ENV=prod vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "start:dev": "cross-env NODE_ENV=dev node ./src/start.js",
+    "start:prod": "cross-env NODE_ENV=prod forever start ./src/start.js",
+    "pydev": "python ./src/main.py",
+    "pyprod": "nohup python ./src/main.py &"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -13,9 +18,11 @@
     "bootstrap": "^4.4.1",
     "core-js": "^2.6.5",
     "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
     "crypto-js": "^3.1.9-1",
     "d3": "^3.x",
     "element-resize-detector": "^1.2.0",
+    "file-saver": "^2.0.2",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "mark": "^0.10.0",

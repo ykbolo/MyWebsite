@@ -8,6 +8,8 @@ import './styles/common.scss'
 
 import './components'
 
+Vue.prototype._env_ = process.env.NODE_ENV
+
 
 Vue.config.productionTip = false
 

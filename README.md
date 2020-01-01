@@ -30,6 +30,30 @@ npm run test
 npm run lint
 ```
 
+### 线上 build
+
+```
+npm run build:prod
+```
+
+### 本地 build
+
+```
+npm run build:dev
+```
+
+### 线上启动
+
+```
+npm run build:prod
+```
+
+### 本地启动
+
+```
+npm run build:dev
+```
+
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/)

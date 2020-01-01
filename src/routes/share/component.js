@@ -3,6 +3,7 @@ export default {
   name: 'share',
   data() {
     return {
+      WebSocketurl: this._env_ === 'dev' ? 'ws://127.0.0.1:8880/game' : 'ws://192.144.235.129:8880/game',
       showChoose: true, // 是否显示选择界面
       username: '', // 当前用户的用户名
       rowValue: 15, // 表格行数
@@ -40,7 +41,7 @@ export default {
         alert("您的浏览器不支持socket")
       } else {
         // 实例化socket
-        this.socket = new WebSocket('ws://192.144.235.129:8880/game')
+        this.socket = new WebSocket(this.WebSocketurl)
         // this.socket = new WebSocket('ws://127.0.0.1:8880/game')
         // 监听socket连接
         this.socket.onopen = this.open
