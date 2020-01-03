@@ -22,10 +22,10 @@
 
 ## 游戏截图
 
-![avatar](../../../mds/game/1.bmp)
-![avatar](../../../mds/game/2.bmp)
-![avatar](../../../mds/game/3.bmp)
-![avatar](../../../mds/game/4.bmp)
+![avatar](../../../mds/game/1/1.bmp)
+![avatar](../../../mds/game/1/2.bmp)
+![avatar](../../../mds/game/1/3.bmp)
+![avatar](../../../mds/game/1/4.bmp)
 
 ## 前端代码
 

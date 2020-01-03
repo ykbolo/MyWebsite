@@ -27,7 +27,7 @@ app.get('/getMdFile', urlencodedParser, function (req, res) {
   //将arg参数字符串反序列化为一个对象
   var params = querystring.parse(arg);
   console.log(params)
-  var data = fs.readFileSync(path.resolve(__dirname, `./mds/${params.type}/${params.type}${params.id}.md`), 'utf-8');    //读取本地的md文件
+  var data = fs.readFileSync(path.resolve(__dirname, `./mds/${params.type}/${params.id}/${params.type}${params.id}.md`), 'utf-8');    //读取本地的md文件
   res.end(JSON.stringify({
     body: marked(data)
   }));
