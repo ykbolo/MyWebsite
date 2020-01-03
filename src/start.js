@@ -7,14 +7,14 @@ var querystring = require('querystring');// 引入 querystring 库，也是帮�
 const app = express();
 var http = require('http');
 var marked = require('marked');
-
+var compression = require('compression')
 
 let port = process.env.NODE_ENV === "dev" ? '8080' : '80'
 console.log(process.env.NODE_ENV)
 
 
 app.use(express.static('src'));  //加载静态文件
-
+app.use(compression());
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get('/getMdFile', urlencodedParser, function (req, res) {
