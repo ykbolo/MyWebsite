@@ -8,8 +8,12 @@ const app = express();
 var http = require('http');
 var marked = require('marked');
 var compression = require('compression')
+// node启动时
+// let port = process.env.NODE_ENV === "dev" ? '8080' : '80'
 
-let port = process.env.NODE_ENV === "dev" ? '8080' : '80'
+// nginx代理启动时
+let port = 8080
+
 console.log(process.env.NODE_ENV)
 
 app.use(compression());
