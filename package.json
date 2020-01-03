@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "cross-env NODE_ENV=dev vue-cli-service serve",
-    "build:dev": "cross-env NODE_ENV=dev vue-cli-service build",
-    "build:prod": "cross-env NODE_ENV=prod vue-cli-service build",
+    "build:dev": "cross-env NODE_ENV=dev vue-cli-service build --buildconfig.js",
+    "build:prod": "cross-env NODE_ENV=prod vue-cli-service build --buildconfig.js",
     "lint": "vue-cli-service lint",
     "start:dev": "cross-env NODE_ENV=dev node ./src/start.js",
     "start:prod": "cross-env NODE_ENV=prod forever start ./src/start.js",

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-content markdown" id="article">
+  <div class="app-content markdown" id="artic">
     <div class="back" @click="back()">返回列表</div>
     <a href="/">返回首页</a>
   </div>

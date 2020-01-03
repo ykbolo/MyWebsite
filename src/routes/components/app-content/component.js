@@ -28,7 +28,7 @@ export default {
 
     },
     getHtml() {
-      var article = document.getElementById('article');
+      var article = document.getElementById('artic');
 
       $.ajax({
         url: "/getMdFile",
