@@ -1,4 +1,4 @@
-
+/*eslint-disable*/
 export default {
   name: 'share',
   data() {
@@ -17,8 +17,8 @@ export default {
       boomCount: 0, // 当前所在位置周围炸弹的数量
       boomList: [], // 存放炸弹随机数的列表
       isgameover: false, // 游戏是否结束,
-      isvip: false,
-      gameovermessage: ''
+      isvip: false,// 是否是旁观者
+      gameovermessage: '' // 游戏结束提示消息
     }
   },
 
@@ -36,6 +36,7 @@ export default {
       this.init()
       this.initTable()
     },
+    // 建立websocket链接
     init: function () {
       if (typeof (WebSocket) === "undefined") {
         alert("您的浏览器不支持socket")
@@ -82,8 +83,6 @@ export default {
     // 移动函数
     move(direction) {
       if (!this.isgameover && !this.isvip) {
-
-
         let table_ishunter_pos = this.table[this.current_position.x][this.current_position.y]
         if (direction === "left" && this.current_position.y > 0) {
           table_ishunter_pos.iscat = 0
@@ -142,11 +141,87 @@ export default {
         }
       }
     },
+
+    // 定义是否在区域内的方法
+    isArea(x, y, rowValue, colValue) {
+      if (x >= 0 && x < rowValue && y >= 0 && y < colValue) {
+        // console.log('true')
+        return true;
+
+      } else {
+        // console.log('false')
+        return false;
+
+      }
+    },
+    //定义打开格子事件
+    Open(x, y, rowValue, colValue) {
+      if (this.table[x][y].isboom) {
+        this.isgameover = true
+
+        var msg = {
+          type: 'gameover',
+          code: 0,
+          username: this.username,
+          current_position: this.current_position
+        }
+        this.socket.send(JSON.stringify(msg))
+        return;
+      }
+      this.table[x][y].issafe = true
+
+      if (this.table[x][y].value > 0) {
+        //console.log((x + 1).toString() + "行" + (y + 1).toString() + "列");
+        return;
+      }
+      for (var i = x - 1; i <= x + 1; i++) {
+        for (var j = y - 1; j <= y + 1; j++) {
+          if (
+            this.isArea(i, j, rowValue, colValue) &&
+            !this.table[i][j].issafe && !this.table[i][j].isopen && !this.table[x][y].isboom
+          ) {
+            //如果没有打开过且不是雷，则打开它
+            this.Open(i, j, rowValue, colValue);
+          }
+        }
+      }
+    },
+    //将每个格子里面的数字插入到列表里面的方法
+    InsertCount(rowValue, colValue) {
+      console.log(rowValue, colValue)
+      for (var x = 0; x < rowValue; x++) {
+        for (var y = 0; y < colValue; y++) {
+          if (this.isArea(x, y, rowValue, colValue) && (!this.table[x][y].isboom)
+          ) {
+            var count1 = 0;
+            for (var i = x - 1; i <= x + 1; i++) {
+              for (var j = y - 1; j <= y + 1; j++) {
+                if (this.isArea(i, j, rowValue, colValue)) {
+
+                  if (this.table[i][j].isboom) {
+                    count1 = count1 + 1;
+                  }
+                }
+              }
+            }
+            if (this.isArea(x, y, rowValue, colValue)) {
+              this.table[x][y].value = count1
+            }
+          }
+        }
+      }
+    },
+    refresh() {
+      window.location.reload()
+    },
     open: function () {
       console.log("socket连接成功")
     },
     error: function () {
       console.log("连接错误")
+    },
+    close: function () {
+      //console.log("socket已经关闭")
     },
     getMessage: function (msg) {
       var data = JSON.parse(msg.data)
@@ -230,87 +305,8 @@ export default {
         this.table[data.hunter_pos.x][data.hunter_pos.y].ishunter = 1
         this.table[data.cat_pos.x][data.cat_pos.y].iscat = 1
       }
-    },
-    close: function () {
-      //console.log("socket已经关闭")
-    },
-    // 定义是否在区域内的方法
-    isArea(x, y, rowValue, colValue) {
-      if (x >= 0 && x < rowValue && y >= 0 && y < colValue) {
-        // console.log('true')
-        return true;
-
-      } else {
-        // console.log('false')
-        return false;
-
-      }
-    },
-    //定义打开格子事件
-    Open(x, y, rowValue, colValue) {
-      if (this.table[x][y].isboom) {
-        this.isgameover = true
-
-        var msg = {
-          type: 'gameover',
-          code: 0,
-          username: this.username,
-          current_position: this.current_position
-        }
-        this.socket.send(JSON.stringify(msg))
-        return;
-      }
-      this.table[x][y].issafe = true
-
-      if (this.table[x][y].value > 0) {
-        //console.log((x + 1).toString() + "行" + (y + 1).toString() + "列");
-        return;
-      }
-      for (var i = x - 1; i <= x + 1; i++) {
-        for (var j = y - 1; j <= y + 1; j++) {
-          if (
-            this.isArea(i, j, rowValue, colValue) &&
-            !this.table[i][j].issafe && !this.table[i][j].isopen && !this.table[x][y].isboom
-          ) {
-            //如果没有打开过且不是雷，则打开它
-            this.Open(i, j, rowValue, colValue);
-          }
-        }
-      }
-    },
-    //将每个格子里面的数字插入到列表里面的方法
-    InsertCount(rowValue, colValue) {
-      console.log(rowValue, colValue)
-      for (var x = 0; x < rowValue; x++) {
-        for (var y = 0; y < colValue; y++) {
-          if (this.isArea(x, y, rowValue, colValue) && (!this.table[x][y].isboom)
-          ) {
-            var count1 = 0;
-            for (var i = x - 1; i <= x + 1; i++) {
-              for (var j = y - 1; j <= y + 1; j++) {
-                if (this.isArea(i, j, rowValue, colValue)) {
-
-                  if (this.table[i][j].isboom) {
-                    count1 = count1 + 1;
-                  }
-                }
-              }
-            }
-            if (this.isArea(x, y, rowValue, colValue)) {
-              this.table[x][y].value = count1
-            }
-          }
-        }
-      }
-    },
-    refresh() {
-      window.location.reload()
     }
-
   },
   mounted() {
-
-
-
   }
 }
