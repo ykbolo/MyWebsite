@@ -1,21 +1,21 @@
 <template>
   <div class="app-footer">
-    <span class="lawissue">备案号:苏ICP备19075717号<br>
-      域名：ezreal-yk.cn
+    <span class="lawissue">备案号:苏ICP备19075717号
     </span>
   </div>
 </template>
 <style scoped>
   .app-footer {
+    z-index: 50;
     color: #666666;
     display: block;
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 40px;
+    padding: 10px;
     text-align: center;
-    background: rgb(240, 210, 215);
+    background: #c7747b;
 
   }
 

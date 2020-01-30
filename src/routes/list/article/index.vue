@@ -1,5 +1,6 @@
 <template>
   <div class="aritcle-list">
+    <!-- <app-tool></app-tool> -->
     <div v-if="showlist">
       <div @click="showcontent(1)" class="every margin-t-1x">
         <div class="every-head">

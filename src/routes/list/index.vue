@@ -1,20 +1,22 @@
 <template>
   <div class="list row margin-h-0x">
-    <div class="col-4 left-container">
+    <app-tool></app-tool>
+    <app-footer></app-footer>
+    <div class="col-xs-12 col-md-4 left-container">
       <div class="logo-container margin-t-1x ">
         <img src="../../imgs/york.png">
-
-
       </div>
       <div class="category ">
         <span>York</span>
       </div>
-      <div class="description">前端工程师</div>
-      <div class="description">游戏玩家</div>
-      <div class="description">电子发烧友</div>
-      <div class="description">大四学生</div>
+      <div class="hidden-xs">
+        <div class="description">前端工程师</div>
+        <div class="description">游戏玩家</div>
+        <div class="description">电子发烧友</div>
+        <div class="description">大四学生</div>
+      </div>
     </div>
-    <div class="col-8 right-container">
+    <div class="col-xs-12 col-md-8 right-container">
       <div class="nav row margin-h-0x">
         <div class="col-6 row ">
           <router-link class="col-4 nav-link" :to="{name:'code'}">

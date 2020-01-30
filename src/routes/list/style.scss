@@ -1,91 +1,186 @@
 .list {
   height: 100%;
 
-  .col-4.left-container {
-    border-right: 1px solid #eeeeee;
-    background: linear-gradient(orange, pink, purple);
-    padding: 0px;
+  @media screen and (max-width:768px) {
+    .left-container {
+      border-right: 1px solid #eeeeee;
+      background: linear-gradient(orange, pink, purple);
+      padding: 0px;
 
-    .logo-container {
-      text-align: center;
+      .logo-container {
+        text-align: center;
 
-      img {
-        width: 50%;
-        height: 50%;
-        border: 1px solid #eee;
-        border-radius: 10px;
+        img {
+          width: 50%;
+          height: 50%;
+          border: 1px solid #eee;
+          border-radius: 10px;
+        }
+      }
+
+      .category {
+        font-size: 30px;
+        font-weight: 600;
+        color: #af1818;
+        text-align: center;
+        width: 100%;
+      }
+
+      .description {
+        font-size: 25px;
+        font-weight: 500;
+        color: blue;
+        text-align: center;
+        width: 100%;
       }
     }
 
-    .category {
-      font-size: 30px;
-      font-weight: 600;
-      color: #af1818;
-      text-align: center;
-      width: 100%;
-    }
+    .right-container {
+      height: 100%;
+      background: linear-gradient(to right, #eee, pink, #eee, pink);
+      padding: 0px;
 
-    .description {
-      font-size: 25px;
-      font-weight: 500;
-      color: blue;
-      text-align: center;
-      width: 100%;
+      .nav {
+        .nav-link {
+          padding: 10px 10px;
+          border: 0.5px solid rgba(167, 12, 38, 0.1);
+          color: rgb(167, 12, 38);
+          font-weight: 600;
+
+          &.active {
+            border: 0.5px solid hsl(59, 74%, 49%);
+            color: orange;
+            background: hsl(298, 71%, 42%);
+            text-align: right;
+          }
+
+          &:hover {
+            cursor: pointer;
+            border: 0.5px solid hsl(59, 74%, 49%);
+            color: orange;
+            background: hsl(298, 71%, 42%);
+            text-align: right;
+          }
+        }
+      }
+
+      .every {
+        padding: 10px;
+        border: 1px dotted purple;
+
+        .every-head {
+          font-weight: bold;
+          color: purple;
+          font-size: 26px;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+          }
+
+          // border-bottom: 1px solid purple;
+        }
+
+        .every-body {
+          padding-left: 5%;
+          font-weight: 400;
+          color: purple;
+          opacity: 0.7;
+          font-size: 20px;
+        }
+      }
     }
   }
 
-  .col-8.right-container {
+  @media screen and (min-width:768px) {
 
-    background: linear-gradient(to right, #eee, pink, #eee, pink);
-    padding: 0px;
 
-    .nav {
-      .nav-link {
-        padding: 10px 10px;
-        border: 0.5px solid rgba(167, 12, 38, 0.1);
-        color: rgb(167, 12, 38);
+    .left-container {
+      border-right: 1px solid #eeeeee;
+      background: linear-gradient(orange, pink, purple);
+      padding: 0px;
+
+      .logo-container {
+        text-align: center;
+
+        img {
+          width: 50%;
+          height: 50%;
+          border: 1px solid #eee;
+          border-radius: 10px;
+        }
+      }
+
+      .category {
+        font-size: 30px;
         font-weight: 600;
+        color: #af1818;
+        text-align: center;
+        width: 100%;
+      }
 
-        &.active {
-          border: 0.5px solid hsl(59, 74%, 49%);
-          color: orange;
-          background: hsl(298, 71%, 42%);
-          text-align: right;
-        }
-
-        &:hover {
-          cursor: pointer;
-          border: 0.5px solid hsl(59, 74%, 49%);
-          color: orange;
-          background: hsl(298, 71%, 42%);
-          text-align: right;
-        }
+      .description {
+        font-size: 25px;
+        font-weight: 500;
+        color: blue;
+        text-align: center;
+        width: 100%;
       }
     }
 
-    .every {
-      padding: 10px;
-      border: 1px dotted purple;
+    .right-container {
 
-      .every-head {
-        font-weight: bold;
-        color: purple;
-        font-size: 26px;
+      background: linear-gradient(to right, #eee, pink, #eee, pink);
+      padding: 0px;
 
-        &:hover {
-          cursor: pointer;
-          opacity: 0.8;
+      .nav {
+        .nav-link {
+          padding: 10px 10px;
+          border: 0.5px solid rgba(167, 12, 38, 0.1);
+          color: rgb(167, 12, 38);
+          font-weight: 600;
+
+          &.active {
+            border: 0.5px solid hsl(59, 74%, 49%);
+            color: orange;
+            background: hsl(298, 71%, 42%);
+            text-align: right;
+          }
+
+          &:hover {
+            cursor: pointer;
+            border: 0.5px solid hsl(59, 74%, 49%);
+            color: orange;
+            background: hsl(298, 71%, 42%);
+            text-align: right;
+          }
         }
-
-        // border-bottom: 1px solid purple;
       }
 
-      .every-body {
-        padding-left: 5%;
-        font-weight: 400;
-        color: purple;
-        opacity: 0.7;
-        font-size: 20px;
+      .every {
+        padding: 10px;
+        border: 1px dotted purple;
+
+        .every-head {
+          font-weight: bold;
+          color: purple;
+          font-size: 26px;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+          }
+
+          // border-bottom: 1px solid purple;
+        }
+
+        .every-body {
+          padding-left: 5%;
+          font-weight: 400;
+          color: purple;
+          opacity: 0.7;
+          font-size: 20px;
+        }
       }
     }
   }
