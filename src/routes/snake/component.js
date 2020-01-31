@@ -8,7 +8,8 @@ export default {
       foodx: 0,
       foody: 0,
       togox: 3,
-      ctx: {}
+      ctx: {},
+      pertime: 1000
     }
   },
   mounted() {
@@ -21,14 +22,19 @@ export default {
     this.ctx = c.getContext("2d");
 
     this.start();
-    // setInterval(() => {
-    //   this.move()
-    //   console.log('循环')
-    // }, 300);
+    this.inter()
+    this.interv = this.inter()
+
     this.drawtable();
 
   },
   methods: {
+    inter() {
+      setInterval(() => {
+        this.move()
+        console.log('循环')
+      }, this.pertime)
+    },
     drawtable() //画地图的函数
     {
       console.log('drawtable');
@@ -100,6 +106,9 @@ export default {
     ,
     move(togo) {
       console.log('move')
+      if (this.pertime > 100) {
+        this.pertime = this.pertime - 50
+      }
       if (togo) {
         this.togox = togo
       }
@@ -171,17 +180,11 @@ export default {
     isDead() {
       console.log('isDead')
       if (this.snake[this.snakeCount - 1].x >= 225 || this.snake[this.snakeCount - 1].y >= 225 || this.snake[this.snakeCount - 1].x < 0 || this.snake[this.snakeCount - 1].y < 0) {
-        // alert("游戏失败");
-        var r = confirm("游戏失败")
-        if (r == true) {
-          window.location.reload();
-        }
-        else {
-          // window.location.reload();
+        setTimeout(() => {
+          window.location.reload()
+        }, 20)
 
-        }
-
-
+        // clearInterval(this.interv);
       }
     }
   }
