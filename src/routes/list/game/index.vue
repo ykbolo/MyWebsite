@@ -5,7 +5,7 @@
         <div class="every-head">
           <span><em>1</em>：猎人与猎物</span>
           <br></div>
-        <div class="every-body">基于websocket实现的web段小游戏</div>
+        <div class="every-body">基于websocket实现的web小游戏</div>
       </div>
       <div @click="showsnake()" class="every margin-t-1x">
         <div class="every-head">
@@ -28,7 +28,9 @@
       </div> -->
     </div>
     <div v-else>
-      <app-content v-if="this.$route.query.id" :id="id" type='game'></app-content>
+      <div v-if="this.$route.query.id">
+        <app-content :id="id" type='game'></app-content>
+      </div>
       <div v-if="snake">
         <snake></snake>
       </div>
