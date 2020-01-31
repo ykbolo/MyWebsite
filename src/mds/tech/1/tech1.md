@@ -22,20 +22,20 @@ git 是一个分布式的版本控制系统，利用好这个工具能提升开�
 假设你需要拉去远端的一个项目 new-pro,你需要在本地找到存放的(空)目录
 使用`λ git init`命令，来初始化这个目录的 git 环境
 
-![avatar](../../../mds/article/1/1.bmp)
+![avatar](../../../mds/tech/1/1.bmp)
 
 可以看到右边括号中有 master 的字样，代表当前处于主分支上
 现在，你想把远端的项目克隆到本地来，可以点击复制把这串 url 复制下来
 
-![avatar](../../../mds/article/1/2.bmp)
+![avatar](../../../mds/tech/1/2.bmp)
 
 执行`git clone https://github.com/ykbolo/newPro.git`命令，发现如下情况
 
-![avatar](../../../mds/article/1/3.bmp)
+![avatar](../../../mds/tech/1/3.bmp)
 
 用`code .`快速打开你的 vscode 编辑器
 
-![avatar](../../../mds/article/1/4.bmp)
+![avatar](../../../mds/tech/1/4.bmp)
 
 可以看到远端的项目以及成功的克隆到了你的本地，你的本地仓库也与远端建立了连接，及时重启后再进入这个目录，他们的关联关系也会一直存在
 
@@ -45,30 +45,30 @@ git 是一个分布式的版本控制系统，利用好这个工具能提升开�
 用`git branch`查看本地已存在的分支
 用`git checkout -b first`可以以当前分支为基础，拷贝出一个分支，并且切换到该分支上
 
-![avatar](../../../mds/article/1/5.bmp)
+![avatar](../../../mds/tech/1/5.bmp)
 
 #### 作出一次提交
 
 加入你相对 readme.md 文件修改一下，保存
 
-![avatar](../../../mds/article/1/6.bmp)
-![avatar](../../../mds/article/1/7.bmp)
+![avatar](../../../mds/tech/1/6.bmp)
+![avatar](../../../mds/tech/1/7.bmp)
 
 在编辑器中可以发现它处于`更改`状态，并没有被 git 所跟踪,可以点击加号让他处于 git 的暂存状态，等同于命令 `git add xxx`
 
-![avatar](../../../mds/article/1/8.bmp)
+![avatar](../../../mds/tech/1/8.bmp)
 
 这个时候你想提交这个更改，做为完成一项功能的总结，可以在消息框中输入你对于这次更改的总结，点击 √ 代表把这个 commit 提交到本地的仓库去，等同于命令 `git commit -m 'your description'`
 
 这个时候你想把他提交到远端去，可以打开`...`,选择 push，就可以把你本地的提交推到远程去,
 
-![avatar](../../../mds/article/1/9.bmp)
+![avatar](../../../mds/tech/1/9.bmp)
 
 等同于命令 `git push`,但是你会发现没有成功，有如下的代码提示，意思是把本地分支推送到远端分支，并建立关联关系，复制这段代码继续运行一次即可
 
-![avatar](../../../mds/article/1/10.bmp)
+![avatar](../../../mds/tech/1/10.bmp)
 
-![avatar](../../../mds/article/1/11.bmp)
+![avatar](../../../mds/tech/1/11.bmp)
 
 假设你在别的电脑上进行了提交并推送到远端了，那么你当前的电脑中的代码就不是最新的了，可以用`git pull`拉取远端的代码--(每次开发前，pull 一下是个好习惯噢)
 

@@ -29,13 +29,13 @@ let sharedRouter = {
       path: 'list',
       component: () => import('./list'),
       children: [{
-        name: 'article',
-        path: 'article',
-        component: () => import('./list/article/index.vue')
+        name: 'tech',
+        path: 'tech',
+        component: () => import('./list/tech/index.vue')
       }, {
-        name: 'code',
-        path: 'code',
-        component: () => import('./list/code/index.vue')
+        name: 'life',
+        path: 'life',
+        component: () => import('./list/life/index.vue')
       }, {
         name: 'game',
         path: 'game',

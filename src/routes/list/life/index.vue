@@ -22,7 +22,7 @@
       </div> -->
     </div>
     <div v-else>
-      <app-content :id="id" type='code'></app-content>
+      <app-content :id="id" type='life'></app-content>
     </div>
   </div>
 </template>

@@ -7,17 +7,17 @@
 安装 compression 依赖。在根目录下创建的 vue.config.js 会覆盖掉 vue-cli3 中的 config
 在 vue.config.js 中导入
 
-![avatar](../../../mds/article/2/1.bmp)
+![avatar](../../../mds/tech/2/1.bmp)
 
 在 proxy 下加入以下内容
 
-![avatar](../../../mds/article/2/2.bmp)
+![avatar](../../../mds/tech/2/2.bmp)
 
-![avatar](../../../mds/article/2/3.bmp)
+![avatar](../../../mds/tech/2/3.bmp)
 
 ## 解决 npm run serve 报错的方法
 
-![avatar](../../../mds/article/2/4.bmp)
+![avatar](../../../mds/tech/2/4.bmp)
 
 因为在根目录下的 vue.config.js 会覆盖掉默认的配置，packagejson 中的运行脚本并没有设置配置文件，默认取当前根目录下的。
 虽然 build 的时候能成功运行，但是调试模式下就会报如上错误
@@ -43,9 +43,9 @@ app.use(compression());
 
 用 start.js 本地启动 build 好的服务，发现有了 content-encoding:gzip
 
-![avatar](../../../mds/article/2/5.bmp)
+![avatar](../../../mds/tech/2/5.bmp)
 
-![avatar](../../../mds/article/2/6.bmp)
+![avatar](../../../mds/tech/2/6.bmp)
 
 但是去服务器上一跑，发现访问速度依旧很慢，content-encoding 也没有改变
 

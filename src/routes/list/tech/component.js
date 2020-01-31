@@ -1,6 +1,6 @@
 import appContent from '../../components/app-content'
 export default {
-  name: 'code',
+  name: 'tech',
   data() {
     return {
       id: 1,
@@ -12,7 +12,6 @@ export default {
   },
   created() {
     console.log('-----')
-
   },
   methods: {
     showcontent(id) {

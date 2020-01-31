@@ -3,7 +3,7 @@
     <div v-if="showlist">
       <div @click="showcontent(1)" class="every margin-t-1x">
         <div class="every-head">
-          <span>第一：猎人与猎物</span>
+          <span><em>1</em>：猎人与猎物</span>
           <br></div>
         <div class="every-body">基于websocket实现的web段小游戏</div>
       </div>
