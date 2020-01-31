@@ -7,6 +7,12 @@
           <br></div>
         <div class="every-body">基于websocket实现的web段小游戏</div>
       </div>
+      <div @click="showsnake()" class="every margin-t-1x">
+        <div class="every-head">
+          <span><em>2</em>：贪吃蛇</span>
+          <br></div>
+        <div class="every-body">经典单机游戏</div>
+      </div>
       <!--
       <div @click="showcontent(2)" class="every">
         <div class="every-head">
@@ -22,11 +28,13 @@
       </div> -->
     </div>
     <div v-else>
-      <app-content :id="id" type='game'></app-content>
+      <app-content v-if="this.$route.query.id" :id="id" type='game'></app-content>
+      <div v-if="snake">
+        <snake></snake>
+      </div>
     </div>
   </div>
 </template>
-
 <script src="./component.js">
 
 </script>

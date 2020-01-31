@@ -1,0 +1,25 @@
+.controller {
+  margin-top: 30px;
+  text-align: center;
+  position: relative;
+
+  .shang {
+    position: relative;
+    left: 60px;
+    bottom: 0px;
+  }
+
+  span {
+    display: inline-block;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #333333;
+  }
+
+  .col-12 {
+    span {
+      display: inline-block;
+    }
+  }
+}
