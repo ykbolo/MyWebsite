@@ -2,7 +2,7 @@
   <div class="list row margin-h-0x">
     <app-tool></app-tool>
 
-    <app-footer></app-footer>
+    <!-- <app-footer></app-footer> -->
     <div class="col-xs-12 col-md-2 left-container">
       <div class="logo-container margin-t-1x ">
         <img src="../../imgs/york.png">
