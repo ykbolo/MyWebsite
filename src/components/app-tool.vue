@@ -55,15 +55,13 @@
         background: #c7747b;
         position: relative;
 
-        .aside {
-          display: none;
-        }
 
-        &.wechat:hover {
+
+        &.wechat {
           cursor: pointer;
 
           .aside {
-            display: block;
+            display: none;
             position: absolute;
             left: -300px;
             top: -200px;

@@ -20,19 +20,22 @@
         <div id="nav">
           <div class="circle">
             <router-link :to="{name:'game'}">
-              <img src="./images/youxi.svg">
+              <img src="../../imgs/游戏.svg">
+              <br>
               <span>游戏</span>
             </router-link>
           </div>
           <div class="circle">
-            <router-link :to="{name:'code'}">
-              <img src="./images/daima.svg">
-              <span>代码</span>
+            <router-link :to="{name:'life'}">
+              <img src="../../imgs/生活.svg">
+              <br>
+              <span>生活</span>
             </router-link>
           </div>
           <div class="circle">
             <router-link :to="{name:'tech'}">
-              <img src="./images/wenzhang.svg">
+              <img src="../../imgs/科技.svg">
+              <br>
               <span>文章</span>
             </router-link>
           </div>
