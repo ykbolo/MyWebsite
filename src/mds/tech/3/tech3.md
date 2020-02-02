@@ -1,6 +1,8 @@
 # vscode 配置
 
-### 自用 setting 参考 适用于 vue 前端开发
+## 自用 setting 参考 适用于 vue 前端开发
+
+### 时间： _2019.12.25_
 
 #### settings.json
 

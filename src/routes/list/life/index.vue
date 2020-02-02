@@ -4,16 +4,17 @@
     <div v-if="showlist">
       <div @click="showcontent(1)" class="every margin-t-1x">
         <div class="every-head">
-          <span><em>1</em>：好物分享-外设篇</span>
+          <span><em>1</em>：好物分享-外设篇1</span>
           <br></div>
-        <div class="every-body">键鼠，耳机推荐,使用感受</div>
+        <div class="every-body">索尼H900N无线降噪耳机</div>
       </div>
-      <!-- <div class="every">
+      <div @click="showcontent(2)" class="every">
         <div class="every-head">
-          <span>第二：d3深入浅出</span>
+          <span><em>2</em>：好物分享-外设篇2</span>
           <br></div>
-        <div class="every-body">基于d3的可视化研究</div>
+        <div class="every-body">罗技G603无线鼠标</div>
       </div>
+      <!--
       <div class="every">
         <div class="every-head">
           <span>第三：git的使用</span>
