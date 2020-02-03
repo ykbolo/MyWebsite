@@ -20,12 +20,13 @@
           <br></div>
         <div class="every-body">自用setting 参考，适用于 vue 前端开发</div>
       </div>
-      <!--<div @click="showcontent(2)" class="every">
+      <div @click="showcontent(4)" class="every">
         <div class="every-head">
-          <span>第二：d3深入浅出</span>
+          <span><em>4</em>：web开发工具分享</span>
           <br></div>
-        <div class="every-body">基于d3的可视化研究</div>
+        <div class="every-body">那些存放在收藏夹中的网站-持续更新</div>
       </div> 
+      <!--
       <div @click="showcontent(3)" class="every">
         <div class="every-head">
           <span>第三：git的使用</span>
