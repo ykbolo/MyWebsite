@@ -12,7 +12,7 @@
 
 #### 我将列举一些入门 web 前端开发的一些实用工具出来
 
-##### 工欲善其事 必先利其器
+##### **工欲善其事 必先利其器**
 
 1.一款好用的代码编辑器： vscode 或 webstorm 或 idea
 
@@ -28,7 +28,7 @@
 
 ![avatar](../../../mds/tech/4/cmder.jpg)
 
-##### 打好基础
+##### **打好基础**
 
 1.JavaScript ES6 语法
 
@@ -126,7 +126,7 @@ link： https://cn.vuejs.org/
 
 link: https://react.docschina.org/
 
-##### 站在巨人的肩膀上
+##### **站在巨人的肩膀上**
 
 1.echarts 一个由百度开发团队开发的 js 库
 

@@ -28,7 +28,7 @@
       </div> -->
     </div>
     <div v-else>
-      <div v-if="this.$route.query.id">
+      <div v-if="hasid">
         <app-content :id="id" type='game'></app-content>
       </div>
       <div v-if="snake">

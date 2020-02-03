@@ -4,9 +4,10 @@ export default {
   name: 'game',
   data() {
     return {
-      id: 1,
+      hasid: false,
       showlist: true,
-      snake: false
+      snake: false,
+      id: 1
     }
   },
   components: {
@@ -20,6 +21,7 @@ export default {
   methods: {
     showcontent(id) {
       this.showlist = false
+      this.hasid = true
       this.id = id
       window.history.pushState({ status: 0 }, '', `?id=${this.id}`)
     },
