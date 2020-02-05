@@ -25,14 +25,14 @@
           <span><em>4</em>：web开发工具分享</span>
           <br></div>
         <div class="every-body">那些存放在收藏夹中的网站-持续更新</div>
-      </div> 
-      <!--
-      <div @click="showcontent(3)" class="every">
+      </div>
+
+      <div @click="showcontent(5)" class="every">
         <div class="every-head">
-          <span>第三：git的使用</span>
+          <span><em>5</em>：「题目分析」</span>
           <br></div>
-        <div class="every-body">小白也能会的git命令</div>
-      </div> -->
+        <div class="every-body">关键词：闭包，引用</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
