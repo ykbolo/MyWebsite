@@ -33,6 +33,13 @@
           <br></div>
         <div class="every-body">关键词：闭包，引用</div>
       </div>
+
+      <div @click="showcontent(6)" class="every">
+        <div class="every-head">
+          <span><em>6</em>：利用scrapy框架爬取苏大所有新闻标题信息</span>
+          <br></div>
+        <div class="every-body">关键词：爬虫，搜索引擎，scrapy</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
