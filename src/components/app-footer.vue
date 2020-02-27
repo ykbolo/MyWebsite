@@ -1,7 +1,7 @@
 <template>
   <div class="app-footer">
-    <span class="lawissue">备案号:苏ICP备19075717号
-    </span>
+    <a class="lawissue" href="http://www.beian.miit.gov.cn/" target="_blank">苏ICP备19075717号-1
+    </a>
   </div>
 </template>
 <style scoped>
