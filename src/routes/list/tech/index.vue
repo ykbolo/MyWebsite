@@ -40,6 +40,13 @@
           <br></div>
         <div class="every-body">关键词：爬虫，搜索引擎，scrapy</div>
       </div>
+
+      <div @click="showcontent(7)" class="every">
+        <div class="every-head">
+          <span><em>7</em>：结果化存储爬虫数据</span>
+          <br></div>
+        <div class="every-body">关键词：爬虫，搜索引擎，scrapy，json</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
