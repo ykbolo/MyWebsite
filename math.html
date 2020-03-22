@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>排序Demo</title>
+</head>
+
+<body>
+  <center>
+    <div>
+      <button onclick="f0()">生成随机数</button>
+      <p></p>
+      <div id="Random_numbers"></div>
+      <button onclick="f1()">选择排序</button>
+      <p></p>
+      <div id="SelectionSort_results"></div>
+      <button onclick="f2()">快速排序</button>
+      <p></p>
+      <div id="Quicksort_results"></div>
+      <button onclick="f3()">冒泡排序</button>
+      <p></p>
+      <div id="BubbleSort_results"></div>
+      <button onclick="f4()">插入排序</button>
+      <p></p>
+      <div id="InsertionSort_results"></div>
+  </center>
+</body>
+<script type="text/javascript">
+  /*用javascript实现常用的四种排序*/
+  var list = new Array();
+  //生成 0-99的随机数组
+  function f0() {
+    var rdmNum;
+    var str0 = "";
+    for (var i = 0; i < 30; i++) {
+      rdmNum = Math.ceil(Math.random() * 100);
+      list[i] = rdmNum;
+    }
+    for (var i = 0; i < list.length - 1; i++) {
+      str0 = str0 + list[i] + " ";
+    }
+    document.getElementById("Random_numbers").innerHTML = "RandomList:\n" + str0;
+  }
+
+  //选择排序，运用递归
+  function SelectionSort(arr, s, n) { //从0开始，n从length开始
+    if (s + 1 > n) {
+      return;
+    }
+    else {
+      var temp, i, min;
+      min = s
+      for (var i = s + 1; i < n; i++) {
+        if (arr[min] > arr[i]) {
+          min = i;
+        }
+      }
+      temp = arr[s]
+      arr[s] = arr[min]
+      arr[min] = temp
+      SelectionSort(arr, s + 1, n)
+    }
+  }
+  //选择排序，循环
+  function SelectionSort2(arr, n) {
+    var minIndex = 0
+    var i = 0
+    var j = 0
+    for (var i = 0; i < n; i++) {
+      minIndex = i
+      for (var j = i + 1; j < n; j++) {
+        if (arr[minIndex] > arr[j]) {
+          minIndex = j
+        }
+      }
+      temp = arr[minIndex]
+      arr[minIndex] = arr[i]
+      arr[i] = temp
+    }
+  }
+  //快速排序，运用递归
+  function QuickSort(arr, low, high) { //low从0开始，high从length-1开始
+
+  }
+
+  //冒泡排序，运用递归
+  function BubbleSort(arr, i, j) { //i,j从0开始
+    var temp;
+    if (i > arr.length - 1) {
+      return;
+    } //终止条件 
+    else if (j >= arr.length - i) {
+      i++;
+      j = 0;
+    } //每次遍历完之后，把j置0，i++
+    if (arr[j] > arr[j + 1]) {
+      temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+    BubbleSort(arr, i, j + 1); //递归
+  }
+
+  //冒泡排序，循环
+  function BubbleSort2(arr, n) { //i,j从0开始
+    var temp;
+    for (var i = 0; i < n; i++) {
+      for (var j = 0; j < n; j++) {
+        if (arr[j] > arr[j + 1]) {
+          temp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = temp
+        }
+      }
+    }
+  }
+
+  //插入排序，运用递归
+  function InsertionSort(arr, n) {
+
+  }
+
+  function InsertionSort2(arr, n) {
+
+    if (n < 2) {
+      return;
+    }
+    for (var i = 1; i < n; i++) {
+      for (var j = i - 1; j >= 0; j--) {
+        if (arr[j] > arr[j + 1]) {
+          let temp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = temp
+        }
+      }
+    }
+  }
+
+  function quickSort(arr, low, high) {
+    var key = arr[low];
+    var start = low;
+    var end = high;
+    while (end > start) {
+      while (end > start && arr[end] >= key) end--;
+      if (arr[end] <= key) {
+        var temp = arr[end];
+        arr[end] = arr[start];
+        arr[start] = temp;
+      }
+      while (end > start && arr[start] <= key) start++;
+      if (arr[start] >= key) {
+        var temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+      }
+    }
+    if (start > low) quickSort(arr, low, start - 1);
+    if (end < high) quickSort(arr, end + 1, high);
+  }
+
+  //创建四个相同的随机数组，供测试使用
+  var list1 = list;
+  var list2 = list;
+  var list3 = list;
+  var list4 = list;
+  //定义选择排序按钮功能
+  function f1() {
+    SelectionSort2(list1, list1.length);
+    var str = ""
+    for (var i = 0; i < list1.length; i++) {
+      str = str + list1[i] + " ";
+    }
+    document.getElementById("SelectionSort_results").innerHTML = "SelectionSort:\n" + str;
+  }
+  //定义快速排序按钮功能
+  function f2() {
+    QuickSort(list2, 0, list2.length - 1);
+
+    var str = ""
+    for (var i = 0; i < list2.length; i++) {
+      str = str + list2[i] + " ";
+    }
+    document.getElementById("Quicksort_results").innerHTML = "QuickSort:\n" + str;
+  }
+  //定义冒泡排序按钮功能
+  function f3() {
+    // BubbleSort(list3, 0, 0);
+    BubbleSort2(list3, list3.length)
+    var str = ""
+    for (var i = 0; i < list3.length; i++) {
+      str = str + list3[i] + " ";
+    }
+    document.getElementById("BubbleSort_results").innerHTML = "BubbleSort:\n" + str;
+  }
+  //定义插入排序按钮功能
+  function f4() {
+    // InsertionSort(list4, list4.length - 1);
+    InsertionSort2(list4, list4.length1);
+    var str = ""
+    for (var i = 0; i < list4.length; i++) {
+      str = str + list4[i] + " ";
+    }
+    document.getElementById("InsertionSort_results").innerHTML = "InsertionSort:\n" + str;
+  }
+  before = 1;
+  back = 1;
+
+  function feibonaqi(index) {
+    if (index == 10) {
+      return 0;
+    }
+    if (index == 1 || index == 2) {
+      fn = 1;
+    }
+    if (index > 2 && index < 10) {
+      fn = before + back;
+      before = back;
+      back = fn;
+    }
+    console.log(fn + " ");
+    return feibonaqi(index + 1);
+  }
+  //feibonaqi(1);
+
+  function feibonaqi1(first, second, index) {
+    if (index < 3) {
+      fn = 1;
+    }
+    if (index > 2 && index < 10) {
+      fn = first + second;
+    }
+    if (index == 10) {
+      return 0;
+    }
+    console.log(fn);
+    return feibonaqi1(second, first + second, index + 1)
+  }
+  //feibonaqi1(1,1,1);
+
+  function feibonaqi2() {
+    first = 1;
+    second = 1;
+    for (var i = 0; i < 9; i++) {
+      if (i < 2) {
+        fn = 1;
+      }
+      else {
+        fn = first + second;
+        first = second;
+        second = fn;
+      }
+      console.log(fn);
+    }
+  }
+  feibonaqi2();
+
+</script>
+
+</html>

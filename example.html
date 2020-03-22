@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>排序Demo</title>
+</head>
+
+<body>
+  <center>
+    <div>
+      <button onclick="f0()">生成随机数</button>
+      <p></p>
+      <div id="Random_numbers"></div>
+      <button onclick="f1()">选择排序</button>
+      <p></p>
+      <div id="SelectionSort_results"></div>
+      <button onclick="f2()">快速排序</button>
+      <p></p>
+      <div id="Quicksort_results"></div>
+      <button onclick="f3()">冒泡排序</button>
+      <p></p>
+      <div id="BubbleSort_results"></div>
+      <button onclick="f4()">插入排序</button>
+      <p></p>
+      <div id="InsertionSort_results"></div>
+  </center>
+</body>
+<script type="text/javascript">
+  /*用javascript实现常用的四种排序*/
+  var list = new Array();
+  //生成 0-99的随机数组
+  function f0() {
+    var rdmNum;
+    var str0 = "";
+    for (var i = 0; i < 30; i++) {
+      rdmNum = Math.ceil(Math.random() * 100);
+      list[i] = rdmNum;
+    }
+    for (var i = 0; i < list.length - 1; i++) {
+      str0 = str0 + list[i] + " ";
+    }
+    document.getElementById("Random_numbers").innerHTML = "RandomList:\n" + str0;
+  }
+
+  //选择排序，运用递归
+  function SelectionSort(arr, s, n) { //从0开始，n从length开始
+    if (s + 1 > n) {
+      return;
+    } //递归结束条件是未排序的索引值大于长度的时候
+    else {
+      var temp, i, min;
+      min = s; //先把最小值的索引设置为s
+      for (var i = s + 1; i < n; i++) { //对于未排序的部分，依次遍历，找出最小值
+
+        if (arr[min] > arr[i]) {
+          min = i;
+        }
+      }
+      temp = arr[s];
+      arr[s] = arr[min];
+      arr[min] = temp; //交换a[s]和a[min]
+
+      SelectionSort(arr, s + 1, n); //递归，每次排序后，未排序部分的索引值加1
+    }
+  }
+
+  //快速排序，运用递归
+  function QuickSort(arr, low, high) { //low从0开始，high从length-1开始
+    var pivot, p_pos, i, t;
+    if (low < high) {
+      p_pos = low; //基准索引low
+      pivot = arr[p_pos]; //设置基准值
+
+      for (i = low + 1; i <= high; i++) { //以首位为参照，遍历到high的元素
+        if (arr[i] < pivot) {
+          p_pos++;
+          t = arr[p_pos];
+          arr[p_pos] = arr[i];
+          arr[i] = t;
+        } //如果元素值小于基准值，则将基准索引累加，相当于把小的值移到左边
+      }
+      t = arr[low];
+      arr[low] = arr[p_pos];
+      arr[p_pos] = t;
+      //分治法
+      QuickSort(arr, low, p_pos - 1);
+      QuickSort(arr, p_pos + 1, high);
+    }
+  }
+
+  //冒泡排序，运用递归
+  function BubbleSort(arr, i, j) { //i,j从0开始
+    var temp;
+    if (i > arr.length - 1) {
+      return;
+    } //终止条件 
+    else if (j >= arr.length - i) {
+      i++;
+      j = 0;
+    } //每次遍历完之后，把j置0，i++
+    if (arr[j] > arr[j + 1]) {
+      temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+    BubbleSort(arr, i, j + 1); //递归
+  }
+
+  //插入排序，运用递归
+  function InsertionSort(arr, n) {
+    if (n == 0) {
+      return;
+    } //递归终止条件是n=0；
+    InsertionSort(arr, n - 1); //递归，n-1
+    var i = n - 1;
+    var key = arr[n];
+    while (i >= 0 && arr[i] > key) { //遍历，插入到相应的位置，每次i减少一个
+      arr[i + 1] = arr[i];
+      i--;
+    }
+    arr[i + 1] = key;
+  }
+
+  //创建四个相同的随机数组，供测试使用
+  var list1 = list;
+  var list2 = list;
+  var list3 = list;
+  var list4 = list;
+  //定义选择排序按钮功能
+  function f1() {
+    SelectionSort(list1, 0, list1.length);
+    var str = ""
+    for (var i = 0; i < list1.length; i++) {
+      str = str + list1[i] + " ";
+    }
+    document.getElementById("SelectionSort_results").innerHTML = "SelectionSort:\n" + str;
+  }
+  //定义快速排序按钮功能
+  function f2() {
+    QuickSort(list2, 0, list2.length - 1);
+    var str = ""
+    for (var i = 0; i < list2.length; i++) {
+      str = str + list2[i] + " ";
+    }
+    document.getElementById("Quicksort_results").innerHTML = "QuickSort:\n" + str;
+  }
+  //定义冒泡排序按钮功能
+  function f3() {
+    BubbleSort(list3, 0, 0);
+    var str = ""
+    for (var i = 0; i < list3.length; i++) {
+      str = str + list3[i] + " ";
+    }
+    document.getElementById("BubbleSort_results").innerHTML = "BubbleSort:\n" + str;
+  }
+  //定义插入排序按钮功能
+  function f4() {
+    InsertionSort(list4, list4.length - 1);
+    var str = ""
+    for (var i = 0; i < list4.length; i++) {
+      str = str + list4[i] + " ";
+    }
+    document.getElementById("InsertionSort_results").innerHTML = "InsertionSort:\n" + str;
+  }
+  before = 1;
+  back = 1;
+
+  function feibonaqi(index) {
+    if (index == 10) {
+      return 0;
+    }
+    if (index == 1 || index == 2) {
+      fn = 1;
+    }
+    if (index > 2 && index < 10) {
+      fn = before + back;
+      before = back;
+      back = fn;
+    }
+    console.log(fn + " ");
+    return feibonaqi(index + 1);
+  }
+  //feibonaqi(1);
+
+  function feibonaqi1(first, second, index) {
+    if (index < 3) {
+      fn = 1;
+    }
+    if (index > 2 && index < 10) {
+      fn = first + second;
+    }
+    if (index == 10) {
+      return 0;
+    }
+    console.log(fn);
+    return feibonaqi1(second, first + second, index + 1)
+  }
+  //feibonaqi1(1,1,1);
+
+  function feibonaqi2() {
+    first = 1;
+    second = 1;
+    for (var i = 0; i < 9; i++) {
+      if (i < 2) {
+        fn = 1;
+      }
+      else {
+        fn = first + second;
+        first = second;
+        second = fn;
+      }
+      console.log(fn);
+    }
+  }
+  feibonaqi2();
+  arr = [1, 2, 3];
+  var arr1 = arr;
+  arr1[0] = 000;
+  console.log(typeof(arr));
+  console.log(arr, arr1);
+  var x = 1;
+  var y = x;
+  y = 22;
+  console.log(x, y);
+  console.log(typeof(x));
+  var m = true;
+  var n = m;
+  n = false;
+  console.log(m, n);
+  var str1 = "1111";
+  var str2 = str1;
+  str2 = "2222";
+  console.log(str1, str2);
+  console.log(typeof(str1));
+
+</script>
+
+</html>
