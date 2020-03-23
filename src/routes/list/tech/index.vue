@@ -47,6 +47,12 @@
           <br></div>
         <div class="every-body">关键词：爬虫，搜索引擎，scrapy，json</div>
       </div>
+      <div @click="showcontent(8)" class="every">
+        <div class="every-head">
+          <span><em>8</em>：node实现elasticsearch批量导入文档</span>
+          <br></div>
+        <div class="every-body">关键词： elasticsearch 、搜索引擎 、json</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
