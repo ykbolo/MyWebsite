@@ -53,6 +53,12 @@
           <br></div>
         <div class="every-body">关键词： elasticsearch 、搜索引擎 、json</div>
       </div>
+      <div @click="showcontent(9)" class="every">
+        <div class="every-head">
+          <span><em>9</em>：浅谈 vue+node 实现前后端分离</span>
+          <br></div>
+        <div class="every-body">关键词：node，vue，跨域，axios，express</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
