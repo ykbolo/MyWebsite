@@ -52,7 +52,7 @@
       .box {
         border: 1px solid #63575b;
         height: 80px;
-        background: #c7747b;
+        background: rgba(143, 167, 89, 0.3);
         position: relative;
 
 
@@ -103,7 +103,7 @@
         border: 1px solid #8f083c;
         height: 80px;
         width: 80px;
-        background: #c7747b;
+        background: rgba(143, 167, 89, 0.3);
         position: relative;
 
         &.wechat:hover {

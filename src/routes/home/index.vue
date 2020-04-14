@@ -3,19 +3,18 @@
     <div class="bg-home full-screen text-center home">
       <app-tool></app-tool>
       <div class="home-content">
-        <div class="logo">
-          <img src="../../imgs/york.png">
-        </div>
-        <br class="br">
-        <div class="title">
-          <h1>YorK的世界</h1>
-          <div @click="changeHover">
-            <p v-if='isHover'>ezreal-yk.cn</p>
-            <p v-else>503589510@qq.com</p>
-          </div>
-          <a href="/share">
-            <h1>游戏入口</h1>
-          </a>
+        <div class="container">
+          <svg class="svg" viewBox="0 0 600 300">
+            <symbol id="line-text">
+              <text text-anchor="middle" x="50%" y="50%" dy=".4em">
+                EZREAL-YORK
+              </text>
+            </symbol>
+            <use xlink:href="#line-text" class="text"></use>
+            <use xlink:href="#line-text" class="text"></use>
+            <use xlink:href="#line-text" class="text"></use>
+            <use xlink:href="#line-text" class="text"></use>
+          </svg>
         </div>
         <div id="nav">
           <div class="circle">
@@ -40,7 +39,6 @@
             </router-link>
           </div>
         </div>
-        <hr class="seperator_betweenNavAndLink" color="#eee">
       </div>
       <app-footer></app-footer>
     </div>

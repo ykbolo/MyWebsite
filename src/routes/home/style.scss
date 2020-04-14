@@ -1,97 +1,136 @@
 .home {
-  overflow: hidden;
-  display: flex;
-  justify-content: between;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  min-width: 320px;
-
-  &.bg-home {
-    background-image: url('../../imgs/bg-home.jpg');
-    background-size: auto 135%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgb(66, 46, 46);
-  }
 
   .home-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: rgba(150, 139, 105, .5);
+    background-image: url(./images/ezreal.jpg);
+    background-size: auto 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-size: auto 135%;
+    height: 100%;
     width: 100%;
-    flex-wrap: wrap;
 
-    .logo {
-      overflow: hidden;
-      position: relative;
-      width: 8em;
-      height: 8em;
-      border: 1px solid var(--Color_MainBlue);
-      border-radius: 50%;
+    .container {
+      font-size: 60px;
+      font-weight: bold;
+      text-transform: uppercase;
 
-      img {
-        position: relative;
-        width: 200%;
-        height: 100%;
-      }
-
-      img:hover {
-        position: relative;
-        width: 200%;
-        right: 100%;
-        height: 100%;
-      }
+      text-align: center;
     }
 
-    .seperator_betweenNavAndLink {
-      width: 60%;
-    }
+    svg {
+      display: inline-block;
 
-    @media only screen and (min-width: 450px) {
-      .title {
-        margin-left: 5em;
-        color: #5978f2;
-
-        p {
-          font-size: 1.2em;
-          font-weight: 600;
-          color: rgb(129, 118, 189);
+      @keyframes text1 {
+        100% {
+          stroke-dashoffset: 1000;
+          stroke-dasharray: 60 180;
         }
       }
+
+      @keyframes text2 {
+        100% {
+          stroke-dashoffset: 1060;
+          stroke-dasharray: 60 180;
+        }
+      }
+
+      @keyframes text3 {
+        100% {
+          stroke-dashoffset: 1120;
+          stroke-dasharray: 60 180;
+        }
+      }
+
+      @keyframes text4 {
+        100% {
+          stroke-dashoffset: 1180;
+          stroke-dasharray: 60 180;
+        }
+      }
+
+      .text {
+        fill: none;
+        stroke-width: 5;
+        stroke-dasharray: 0 240;
+        stroke-dashoffset: 0;
+      }
+
+      .text:nth-child(4n + 1) {
+        stroke: rgb(39, 135, 238);
+        animation: text1 2s ease-in-out infinite;
+      }
+
+      .text:nth-child(4n + 2) {
+        stroke: rgb(47, 169, 92);
+        animation: text2 2s ease-in-out infinite;
+      }
+
+      .text:nth-child(4n + 3) {
+        stroke: rgb(85, 56, 249);
+        animation: text3 2s ease-in-out infinite;
+      }
+
+      .text:nth-child(4n + 4) {
+        stroke: rgb(235, 61, 50);
+        animation: text4 2s ease-in-out infinite;
+      }
+
+
     }
 
-    .title {
-      color: #5978f2;
+    #nav {
+      padding: 20px 20px;
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
 
-      p {
-        font-size: 1.2em;
-        font-weight: 600;
-        color: rgb(129, 118, 189);
+      .circle {
+        transform: scale(1.3);
+        position: relative;
+
+
+        &:hover {
+          img {
+            animation: rotate 1s ease-in-out infinite;
+          }
+
+          span {
+            display: inline-block;
+            position: relative;
+            animation: hmove 1s ease-in-out infinite;
+          }
+        }
+
+        @keyframes rotate {
+          100% {
+            transform: rotate(360deg);
+          }
+
+          50% {
+            transform: rotate(180deg);
+          }
+        }
+
+        @keyframes hmove {
+          100% {
+            left: 0px;
+          }
+
+          50% {
+            left: 10px;
+            transform: scale(1.2);
+          }
+
+          0% {
+            left: 0px;
+          }
+        }
+
+
       }
     }
-
   }
-}
 
-#nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 80%;
-  padding: 1em 0;
-  font-size: 1.6em;
-  flex-wrap: nowrap;
 
-  .circle {
-    // :hover {
-    //   background: radial-gradient(rgba(250, 250, 0, 0.5), rgba(200, 200, 0, 0.4), rgba(100, 100, 0, 0.1));
-    //   /* 标准的语法 */
-    // }
-
-    a {
-      color: black;
-    }
-  }
 }

@@ -15,7 +15,8 @@
     bottom: 0;
     padding: 10px;
     text-align: center;
-    background: #c7747b;
+    background: rgba(20, 20, 19, 0.58);
+    box-shadow: 0px -3px 10px rgba(22, 22, 21, 0.18);
 
   }
 
