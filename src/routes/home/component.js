@@ -1,18 +1,18 @@
-
-
-
 export default {
-  data() {
-    return {
-      isHover: true
+    data() {
+        return {
+            imgurl: ''
+        }
+    },
+    components: {},
+    methods: {
+
+    },
+    mounted() {
+        setInterval(() => {
+            let randomNum = Math.ceil(Math.random() * 100);
+            this.imgurl = `http://ezreal-yk.cn/photos/${randomNum}.jpg`
+        }, 2000)
+
     }
-  },
-  components: {
-  },
-  methods: {
-    changeHover: function () {
-      this.isHover = !this.isHover
-    }
-  },
-  mounted() { console.log(this._env_) }
 }
