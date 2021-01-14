@@ -59,6 +59,30 @@
           <br></div>
         <div class="every-body">关键词：node，vue，跨域，axios，express</div>
       </div>
+      <div @click="showcontent(10)" class="every">
+        <div class="every-head">
+          <span><em>10</em>：小技巧-十六进制色值转成 rgba</span>
+          <br></div>
+        <div class="every-body">css,rgba</div>
+      </div>
+      <div @click="showcontent(11)" class="every">
+        <div class="every-head">
+          <span><em>11</em>：python 脚本-生成键值对到剪贴板</span>
+          <br></div>
+        <div class="every-body">关键词：python，pyperclip</div>
+      </div>
+      <div @click="showcontent(12)" class="every">
+        <div class="every-head">
+          <span><em>12</em>：css 轮播器</span>
+          <br></div>
+        <div class="every-body">关键词：动画，css</div>
+      </div>
+      <div @click="showcontent(13)" class="every">
+        <div class="every-head">
+          <span><em>13</em>：利用 portfinder 解决端口号冲突</span>
+          <br></div>
+        <div class="every-body">关键词：端口，dev，portfinder，nodejs</div>
+      </div>
     </div>
     <div v-else>
       <app-content :id="id" type='tech'></app-content>
