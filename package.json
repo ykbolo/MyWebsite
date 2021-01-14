@@ -24,7 +24,7 @@
     "element-resize-detector": "^1.2.0",
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "mark": "^0.10.0",
     "marked": "^0.8.0",
