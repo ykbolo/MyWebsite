@@ -10,16 +10,16 @@ export default {
         return {
             tabs: [{
                 name: '主页',
-                route: ''
+                path: '/'
             }, {
                 name: '测评',
-                route: ''
+                path: '/list/life'
             }, {
                 name: '技术',
-                route: ''
+                path: '/list/tech'
             }, {
                 name: '相册',
-                route: ''
+                path: '/list/game'
             }]
         }
     },

@@ -19,7 +19,7 @@
       <div>
         <router-link :to="{name:'life'}">
           <div class="nav-link" :class="{active:this.$route.name==='life'}">
-            生活
+            测评
           </div>
         </router-link>
         <router-link :to="{name:'game'}">

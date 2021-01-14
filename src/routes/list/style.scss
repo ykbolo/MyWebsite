@@ -1,205 +1,171 @@
 .list {
-  height: 100%;
-
-  .nav-link {
-    width: 100%;
-    // background: #af1818;
-    text-align: center;
-    padding: 5px;
-    font-size: 1.2em;
-
-    &.active {
-      background: #af1818;
-      border-radius: 5px;
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .left-container {
-      border-right: 1px solid #eeeeee;
-      background-image: url(../../imgs/bg-left.jpg);
-      padding: 0px;
-
-      .logo-container {
-        text-align: center;
-
-        img {
-          width: 50%;
-          height: 50%;
-          border: 1px solid #eee;
-          border-radius: 10px;
-        }
-      }
-
-      .category {
-        font-size: 30px;
-        font-weight: 600;
-        color: #af1818;
-        text-align: center;
+    height: 100%;
+    .nav-link {
         width: 100%;
-      }
-
-      .description {
-        font-size: 25px;
-        font-weight: 500;
-        color: blue;
+        // background: #af1818;
         text-align: center;
-        width: 100%;
-      }
+        padding: 5px;
+        font-size: 1.2em;
+        &.active {
+            background: #af1818;
+            border-radius: 5px;
+        }
     }
-
-    .right-container {
-      height: 100%;
-      background-image: url(../../imgs/bg-list.jpg);
-      padding: 0px;
-
-      .nav {
-        .nav-link {
-          padding: 10px 10px;
-          border: 0.5px solid rgba(167, 12, 38, 0.1);
-          color: rgb(167, 12, 38);
-          font-weight: 600;
-
-          &.active {
-            border: 0.5px solid hsl(59, 74%, 49%);
-            color: orange;
-            background: hsl(298, 71%, 42%);
-            text-align: right;
-          }
-
-          &:hover {
-            cursor: pointer;
-            border: 0.5px solid hsl(59, 74%, 49%);
-            color: orange;
-            background: hsl(298, 71%, 42%);
-            text-align: right;
-          }
+    @media screen and (max-width:768px) {
+        .left-container {
+            border-right: 1px solid #eeeeee;
+            background: #f5f8f9;
+            padding: 0px;
+            .logo-container {
+                text-align: center;
+                img {
+                    width: 50%;
+                    height: 50%;
+                    border: 1px solid #eee;
+                    border-radius: 10px;
+                }
+            }
+            .category {
+                font-size: 30px;
+                font-weight: 600;
+                color: #af1818;
+                text-align: center;
+                width: 100%;
+            }
+            .description {
+                font-size: 25px;
+                font-weight: 500;
+                color: blue;
+                text-align: center;
+                width: 100%;
+            }
         }
-      }
-
-      .every {
-        padding: 10px;
-        border: 1px dotted purple;
-
-        .every-head {
-          font-weight: bold;
-          color: purple;
-          font-size: 26px;
-
-          &:hover {
-            cursor: pointer;
-            opacity: 0.8;
-          }
-
-          // border-bottom: 1px solid purple;
+        .right-container {
+            height: 100%;
+            background-image: url(../../imgs/bg-list.jpg);
+            padding: 0px;
+            .nav {
+                .nav-link {
+                    padding: 10px 10px;
+                    border: 0.5px solid rgba(167, 12, 38, 0.1);
+                    color: rgb(167, 12, 38);
+                    font-weight: 600;
+                    &.active {
+                        border: 0.5px solid hsl(59, 74%, 49%);
+                        color: orange;
+                        background: hsl(298, 71%, 42%);
+                        text-align: right;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        border: 0.5px solid hsl(59, 74%, 49%);
+                        color: orange;
+                        background: hsl(298, 71%, 42%);
+                        text-align: right;
+                    }
+                }
+            }
+            .every {
+                padding: 10px;
+                border: 1px dotted purple;
+                .every-head {
+                    font-weight: bold;
+                    color: purple;
+                    font-size: 26px;
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.8;
+                    }
+                    // border-bottom: 1px solid purple;
+                }
+                .every-body {
+                    padding-left: 5%;
+                    font-weight: 400;
+                    color: purple;
+                    opacity: 0.7;
+                    font-size: 20px;
+                }
+            }
         }
-
-        .every-body {
-          padding-left: 5%;
-          font-weight: 400;
-          color: purple;
-          opacity: 0.7;
-          font-size: 20px;
-        }
-      }
     }
-  }
-
-  @media screen and (min-width:768px) {
-
-
-    .left-container {
-      border-right: 1px solid #eeeeee;
-      // border-radius: 30px;
-      background: #778877;
-      padding: 0px;
-
-      .logo-container {
-        text-align: center;
-
-        img {
-          width: 50%;
-          height: 50%;
-          border: 1px solid #eee;
-          border-radius: 10px;
+    @media screen and (min-width:768px) {
+        .left-container {
+            border-right: 1px solid #eeeeee;
+            // border-radius: 30px;
+            background: #f5f8f9;
+            padding: 0px;
+            .logo-container {
+                text-align: center;
+                img {
+                    width: 50%;
+                    height: 50%;
+                    border: 1px solid #eee;
+                    border-radius: 10px;
+                }
+            }
+            .category {
+                font-size: 30px;
+                font-weight: 600;
+                color: #af1818;
+                text-align: center;
+                width: 100%;
+            }
+            .description {
+                font-size: 25px;
+                font-weight: 500;
+                color: blue;
+                text-align: center;
+                width: 100%;
+            }
         }
-      }
-
-      .category {
-        font-size: 30px;
-        font-weight: 600;
-        color: #af1818;
-        text-align: center;
-        width: 100%;
-      }
-
-      .description {
-        font-size: 25px;
-        font-weight: 500;
-        color: blue;
-        text-align: center;
-        width: 100%;
-      }
+        .right-container {
+            background: #f5f8f9;
+            background-size: auto 100%;
+            padding: 0px;
+            .nav {
+                .nav-link {
+                    padding: 10px 10px;
+                    border: 0.5px solid rgba(167, 12, 38, 0.1);
+                    color: rgb(167, 12, 38);
+                    font-weight: 600;
+                    &.active {
+                        border: 0.5px solid hsl(59, 74%, 49%);
+                        color: orange;
+                        background: hsl(298, 71%, 42%);
+                        text-align: right;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        border: 0.5px solid hsl(59, 74%, 49%);
+                        color: orange;
+                        background: hsl(298, 71%, 42%);
+                        text-align: right;
+                    }
+                }
+            }
+            .every {
+                padding: 10px;
+                box-shadow: 0 2px 5px 0 rgba(211, 199, 148, 0.16), 0 2px 10px 0 rgba(245, 165, 74, 0.32);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.1);
+                .every-head {
+                    font-weight: bold;
+                    color: purple;
+                    font-size: 26px;
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.8;
+                    }
+                    // border-bottom: 1px solid purple;
+                }
+                .every-body {
+                    padding-left: 5%;
+                    font-weight: 400;
+                    color: purple;
+                    opacity: 0.7;
+                    font-size: 20px;
+                }
+            }
+        }
     }
-
-    .right-container {
-
-      background-image: url(../../imgs/bg-list.jpg);
-      background-size: auto 100%;
-      padding: 0px;
-
-      .nav {
-        .nav-link {
-          padding: 10px 10px;
-          border: 0.5px solid rgba(167, 12, 38, 0.1);
-          color: rgb(167, 12, 38);
-          font-weight: 600;
-
-          &.active {
-            border: 0.5px solid hsl(59, 74%, 49%);
-            color: orange;
-            background: hsl(298, 71%, 42%);
-            text-align: right;
-          }
-
-          &:hover {
-            cursor: pointer;
-            border: 0.5px solid hsl(59, 74%, 49%);
-            color: orange;
-            background: hsl(298, 71%, 42%);
-            text-align: right;
-          }
-        }
-      }
-
-      .every {
-        padding: 10px;
-        box-shadow: 0 2px 5px 0 rgba(211, 199, 148, 0.16), 0 2px 10px 0 rgba(245, 165, 74, 0.32);
-        border-radius: 18px;
-
-        background: rgba(255, 255, 255, 0.1);
-
-        .every-head {
-          font-weight: bold;
-          color: purple;
-          font-size: 26px;
-
-          &:hover {
-            cursor: pointer;
-            opacity: 0.8;
-          }
-
-          // border-bottom: 1px solid purple;
-        }
-
-        .every-body {
-          padding-left: 5%;
-          font-weight: 400;
-          color: purple;
-          opacity: 0.7;
-          font-size: 20px;
-        }
-      }
-    }
-  }
 }

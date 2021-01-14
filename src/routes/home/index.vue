@@ -1,7 +1,7 @@
 <template>
   <div>
-    <app-top-bar></app-top-bar>
-    <img :src="imgurl" />
+    <!-- <app-top-bar></app-top-bar> -->
+    <div id="home"></div>
   </div>
 </template>
 

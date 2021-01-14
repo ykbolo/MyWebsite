@@ -12,7 +12,7 @@
       <use xlink:href="#line-text" class="text"></use>
     </svg>
     <div class="main-nav">
-      <router-link :to="{ name: el.name }" v-for="(el, index) in tabs">
+      <router-link :to="el.path" v-for="(el, index) in tabs">
         {{ el.name }}
       </router-link>
     </div>

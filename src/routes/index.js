@@ -11,44 +11,49 @@ import defaultLayout from '../layouts/default'
 // }
 
 let sharedRouter = {
-  path: '/',
-  component: defaultLayout,
-  children: [
-    {
-      name: 'home',
-      path: '',
-      component: () => import(/* webpackChunkName: "home" */ './home')
-    },
-    {
-      name: 'share',
-      path: 'share',
-      component: () => import('./share')
-    },
-    {
-      name: 'list',
-      path: 'list',
-      component: () => import('./list'),
-      children: [{
-        name: 'tech',
-        path: 'tech',
-        component: () => import('./list/tech/index.vue')
-      }, {
-        name: 'life',
-        path: 'life',
-        component: () => import('./list/life/index.vue')
-      }, {
-        name: 'game',
-        path: 'game',
-        component: () => import('./list/game/index.vue')
-      }
+    path: '/',
+    component: defaultLayout,
+    children: [{
+            name: 'home',
+            path: '',
+            component: () =>
+                import ( /* webpackChunkName: "home" */ './home')
+        },
+        {
+            name: 'share',
+            path: 'share',
+            component: () =>
+                import ('./share')
+        },
+        {
+            name: 'list',
+            path: 'list',
+            component: () =>
+                import ('./list'),
+            children: [{
+                    name: 'tech',
+                    path: 'tech',
+                    component: () =>
+                        import ('./list/tech/index.vue')
+                }, {
+                    name: 'life',
+                    path: 'life',
+                    component: () =>
+                        import ('./list/life/index.vue')
+                }, {
+                    name: 'game',
+                    path: 'game',
+                    component: () =>
+                        import ('./list/game/index.vue')
+                }
 
-      ]
-    }
-  ]
+            ]
+        }
+    ]
 }
 
 let routes = [
-  sharedRouter
+    sharedRouter
 ]
 
 // if (__DEV__ || __SIT__) {

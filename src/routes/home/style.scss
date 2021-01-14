@@ -1,3 +1,30 @@
 img {
     width: 500px;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei, serif;
+}
+
+.home {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei, serif;
+    height:1440px;
+}
+
+li {
+    list-style: none;
+}
+
+.ball {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: pink;
+    border-radius: 50%;
+}
